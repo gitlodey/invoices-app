@@ -1,8 +1,7 @@
 <script setup lang="ts">
-import { RouterView } from "vue-router";
+import MainPage from "@/views/MainPage.vue";
 </script>
 
 <template>
-  Invoice vue hard rgachh
-  <RouterView />
+  <MainPage />
 </template>
