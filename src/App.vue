@@ -17,9 +17,13 @@ import MainPage from "@/views/MainPage.vue";
   --color-gray-light: #dfe3fa;
   --color-gray-dark: #888eb0;
   --column-gap-m: 20px;
+  --color-bg: var(--color-dark);
+}
+:root.dark-theme {
+  --color-bg: #f8f8fb;
 }
 body {
   margin: 0;
-  background-color: var(--color-dark);
+  background-color: var(--color-bg);
 }
 </style>

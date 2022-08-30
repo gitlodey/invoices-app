@@ -10,9 +10,13 @@
 </template>
 
 <script lang="ts" setup>
-import { ref, computed } from "vue";
+import { ref, computed, onMounted } from "vue";
 
-const isDarkTheme = ref(true);
+const userTheme = ref(localStorage.getItem("user-theme"));
+
+const isDarkTheme = computed(() => {
+  return userTheme.value === "dark-theme";
+});
 const iconSrc = computed(() => {
   return isDarkTheme.value
     ? "/src/assets/icon-sun.svg"
@@ -23,8 +27,38 @@ const iconAlt = computed(() => {
 });
 
 const toggleTheme = () => {
-  isDarkTheme.value = !isDarkTheme.value;
+  if (userTheme.value === "light-theme") {
+    setTheme("dark-theme");
+  } else {
+    setTheme("light-theme");
+  }
 };
+
+const getTheme = () => {
+  return localStorage.getItem("user-theme");
+};
+
+const setTheme = (theme: string) => {
+  localStorage.setItem("user-theme", theme);
+  userTheme.value = theme;
+  document.documentElement.className = theme;
+};
+
+const getMediaPreference = () => {
+  const hasDarkPreference = window.matchMedia(
+    "(prefers-color-scheme: dark)",
+  ).matches;
+  if (hasDarkPreference) {
+    return "dark-theme";
+  } else {
+    return "light-theme";
+  }
+};
+
+onMounted(() => {
+  const initUserTheme = getTheme() || getMediaPreference();
+  setTheme(initUserTheme);
+});
 </script>
 
 <style scoped>

@@ -22,6 +22,7 @@ import ThemeSwitcher from "@/components/ThemeSwitcher.vue";
   position: sticky;
   top: 0;
   background-color: var(--color-dark-secondary);
+  border-radius: 0 var(--logo-border-radius) var(--logo-border-radius) 0;
 }
 .sidebar--profile {
   border-top: 1px solid var(--color-gray-dark);
