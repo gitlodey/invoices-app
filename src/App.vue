@@ -18,6 +18,8 @@ import MainPage from "@/views/MainPage.vue";
   --color-gray-dark: #888eb0;
   --column-gap-m: 20px;
   --color-bg: #f8f8fb;
+  --button-default-color: var(--color-main);
+  --button-default-hover-color: var(--color-secondary);
 }
 :root.dark-theme {
   --color-bg: var(--color-dark);
