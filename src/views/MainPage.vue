@@ -3,7 +3,7 @@
     <PageSidebar />
     <div class="content">
       <PageHeader />
-      <RouterView />
+      <RouterView class="content--route" />
     </div>
   </div>
 </template>
@@ -20,5 +20,15 @@ import PageHeader from "@/components/PageHeader.vue";
   grid-template-columns: var(--app-sidebar-width) 1fr;
   grid-column-gap: var(--column-gap-m);
   position: relative;
+}
+.content {
+  width: 1020px;
+  max-width: 100%;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+}
+.content--route {
+  flex: 1 0 auto;
 }
 </style>

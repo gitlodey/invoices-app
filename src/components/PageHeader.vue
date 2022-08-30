@@ -9,7 +9,7 @@
 
     <AppButton
       icon="plus"
-      text="Add invoice"
+      text="New invoice"
       :icon-style="{
         backgroundColor: '#fff',
         padding: '10px',
