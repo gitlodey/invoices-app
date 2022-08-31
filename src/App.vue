@@ -25,14 +25,19 @@ import MainPage from "@/views/MainPage.vue";
   --color-pending-bg: rgba(255, 143, 0, 0.1);
   --color-draft: #dee3f9;
   --color-draft-bg: rgba(222, 227, 249, 0.1);
+  --color-invoice-item-bg: #fff;
+  --color-text-main: var(--color-dark);
   --button-default-color: var(--color-main);
   --button-default-hover-color: var(--color-secondary);
 }
 :root.dark-theme {
   --color-bg: var(--color-dark);
+  --color-invoice-item-bg: var(--color-dark-secondary);
+  --color-text-main: #fff;
 }
 body {
   margin: 0;
   background-color: var(--color-bg);
+  color: var(--color-text-main);
 }
 </style>
