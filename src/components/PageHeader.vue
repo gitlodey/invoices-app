@@ -15,6 +15,7 @@
         padding: '10px',
         borderRadius: '20px',
       }"
+      @click="openNewInvoicePage"
     />
   </div>
 </template>
@@ -22,6 +23,14 @@
 <script lang="ts" setup>
 import AppButton from "@/components/AppButton.vue";
 import InvoicesFilter from "@/components/InvoicesFilter.vue";
+import { useRouter } from "vue-router";
+const router = useRouter();
+
+const openNewInvoicePage = () => {
+  router.push({
+    path: "/new",
+  });
+};
 </script>
 <style scoped>
 .page-header {
