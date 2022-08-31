@@ -39,5 +39,6 @@ body {
   margin: 0;
   background-color: var(--color-bg);
   color: var(--color-text-main);
+  font-family: Helvetica, serif;
 }
 </style>
