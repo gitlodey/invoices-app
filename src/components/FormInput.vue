@@ -20,7 +20,6 @@
 
 <script lang="ts" setup>
 import { Field, ErrorMessage } from "vee-validate/dist/vee-validate";
-import { defineEmits, defineProps } from "vue";
 
 const props = defineProps({
   modelValue: {
