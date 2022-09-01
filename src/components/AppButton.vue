@@ -2,7 +2,6 @@
   <button
     class="app-button"
     :class="colorClass"
-    @click="$emit('click')"
   >
     <AppIcon
       v-if="icon"

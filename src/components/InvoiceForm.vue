@@ -99,6 +99,13 @@
         label="Payment Description"
       />
     </div>
+
+    <InvoiceItems :items="form.items" />
+    <AppButton
+      text="Add new item"
+      icon="plus"
+      @click="addNewItem"
+    />
   </div>
 </template>
 
@@ -110,6 +117,8 @@ import FormSelect from "@/components/FormSelect.vue";
 import { reactive } from "vue";
 import type Invoice from "@/types/Invoice";
 import InvoiceStatuses from "@/enums/InvoiceStatuses";
+import InvoiceItems from "@/components/InvoiceItems.vue";
+import AppButton from "@/components/AppButton.vue";
 
 const form = reactive<Invoice>({
   id: "",
@@ -136,6 +145,15 @@ const form = reactive<Invoice>({
   total: 0,
 });
 defineRule("required", required);
+
+const addNewItem = () => {
+  form.items.push({
+    name: "",
+    quantity: 0,
+    price: 0,
+    total: 0,
+  });
+};
 </script>
 
 <style scoped>

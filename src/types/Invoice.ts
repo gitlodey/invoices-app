@@ -1,30 +1,30 @@
 import type InvoiceStatuses from "@/enums/InvoiceStatuses";
 
 interface InvoiceAddress {
-  street: String;
-  city: String;
-  postCode: String;
-  country: String;
+  street: string;
+  city: string;
+  postCode: string;
+  country: string;
 }
-interface InvoiceItem {
-  name: String;
-  quantity: Number;
-  price: Number;
-  total: Number;
+export interface IInvoiceItem {
+  name: string;
+  quantity: number;
+  price: number;
+  total: number;
 }
 interface Invoice {
-  id: String;
-  createdAt: String;
-  paymentDue: String;
-  description: String;
-  paymentTerms: Number;
-  clientName: String;
-  clientEmail: String;
+  id: string;
+  createdAt: string;
+  paymentDue: string;
+  description: string;
+  paymentTerms: number;
+  clientName: string;
+  clientEmail: string;
   status: InvoiceStatuses;
   senderAddress: InvoiceAddress;
   clientAddress: InvoiceAddress;
-  items: InvoiceItem[];
-  total: Number;
+  items: IInvoiceItem[];
+  total: number;
 }
 
 export default Invoice;
