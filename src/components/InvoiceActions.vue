@@ -2,14 +2,17 @@
   <div class="invoice-actions">
     <div class="invoice-actions--left">
       <span>Status </span>
-      <InvoiceStatus :status="invoice.status" />
+      <InvoiceStatus :status="status" />
     </div>
     <div class="invoice-actions--right">
       <AppButton
         text="Edit"
         @click="editInvoice"
       />
-      <AppButton text="Mark as paid" />
+      <AppButton
+        text="Mark as paid"
+        @click="markAsPaid"
+      />
       <AppButton
         text="Delete"
         @click="showConfirmation"
@@ -22,9 +25,11 @@
 import type Invoice from "@/types/Invoice";
 import InvoiceStatus from "@/components/InvoiceStatus.vue";
 import AppButton from "@/components/AppButton.vue";
+import { ref } from "vue";
 import { useRouter } from "vue-router";
 import { useUi } from "@/stores/ui";
 import { useInvoices } from "@/stores/Invoices";
+import InvoiceStatuses from "@/enums/InvoiceStatuses";
 
 const router = useRouter();
 const uiStore = useUi();
@@ -33,6 +38,8 @@ const invoicesStore = useInvoices();
 const props = defineProps<{
   invoice: Invoice;
 }>();
+
+const status = ref(props.invoice.status);
 
 const editInvoice = () => {
   router.push({
@@ -53,6 +60,13 @@ const deleteInvoice = async () => {
   await router.push({
     path: `/`,
   });
+};
+
+const markAsPaid = async () => {
+  const invoice = { ...props.invoice };
+  invoice.status = InvoiceStatuses.paid;
+  status.value = InvoiceStatuses.paid;
+  await invoicesStore.editInvoice(invoice);
 };
 </script>
 
