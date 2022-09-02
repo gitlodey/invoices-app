@@ -114,12 +114,15 @@ import { defineRule } from "vee-validate";
 import { required } from "@vee-validate/rules";
 import FormInput from "@/components/FormInput.vue";
 import FormSelect from "@/components/FormSelect.vue";
-import { reactive } from "vue";
+import { onMounted, reactive } from "vue";
 import type Invoice from "@/types/Invoice";
 import InvoiceStatuses from "@/enums/InvoiceStatuses";
 import InvoiceItems from "@/components/InvoiceItems.vue";
 import AppButton from "@/components/AppButton.vue";
 
+const props = defineProps<{
+  invoice?: Invoice;
+}>();
 const form = reactive<Invoice>({
   id: "",
   createdAt: "",
@@ -145,6 +148,10 @@ const form = reactive<Invoice>({
   total: 0,
 });
 defineRule("required", required);
+
+if (props.invoice) {
+  Object.assign(form, props.invoice);
+}
 
 const addNewItem = () => {
   form.items.push({
