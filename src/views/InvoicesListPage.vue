@@ -61,7 +61,7 @@ const onInvoiceFormClose = () => {
 
 const goToInvoicePage = (invoice: Invoice) => {
   router.push({
-    path: `/view/${invoice.id}`,
+    path: `/invoice/${invoice.id}`,
     params: {
       invoiceId: invoice.id,
     },

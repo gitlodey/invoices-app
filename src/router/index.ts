@@ -19,7 +19,7 @@ const router = createRouter({
       ],
     },
     {
-      path: "/view/:invoiceId",
+      path: "/invoice/:invoiceId",
       name: "Invoice page",
       component: InvoicePage,
     },
