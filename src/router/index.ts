@@ -1,6 +1,7 @@
 import { createRouter, createWebHistory } from "vue-router";
 import InvoicesListPage from "@/views/InvoicesListPage.vue";
 import InvoiceNew from "@/views/InvoiceNew.vue";
+import InvoiceEdit from "@/views/InvoiceEdit.vue";
 import InvoicePage from "@/views/InvoicePage.vue";
 
 const router = createRouter({
@@ -22,6 +23,13 @@ const router = createRouter({
       path: "/invoice/:invoiceId",
       name: "Invoice page",
       component: InvoicePage,
+      children: [
+        {
+          path: "edit",
+          name: "Edit invoice",
+          component: InvoiceEdit,
+        },
+      ],
     },
   ],
 });

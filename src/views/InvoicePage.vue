@@ -11,6 +11,15 @@
       <InvoiceActions :invoice="invoicesStore.currentInvoice" />
       <InvoiceCard :invoice="invoicesStore.currentInvoice" />
     </template>
+
+    <router-view v-slot="{ Component }">
+      <PageSlide
+        :is-show="!!Component"
+        @close="onInvoiceFormClose"
+      >
+        <component :is="Component" />
+      </PageSlide>
+    </router-view>
   </div>
 </template>
 
@@ -22,6 +31,7 @@ import { useRouter, useRoute } from "vue-router";
 import { onMounted } from "vue";
 import { useInvoices } from "@/stores/Invoices";
 import AppIcon from "@/components/AppIcon.vue";
+import PageSlide from "@/components/PageSlide.vue";
 
 const router = useRouter();
 const route = useRoute();
@@ -37,6 +47,12 @@ const goBack = () => {
   invoicesStore.$reset();
   router.push({
     path: "/",
+  });
+};
+
+const onInvoiceFormClose = () => {
+  router.push({
+    path: `/invoice/${invoicesStore.currentInvoice?.id}`,
   });
 };
 </script>

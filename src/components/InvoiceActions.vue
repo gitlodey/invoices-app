@@ -5,7 +5,10 @@
       <InvoiceStatus :status="invoice.status" />
     </div>
     <div class="invoice-actions--right">
-      <AppButton text="Edit" />
+      <AppButton
+        text="Edit"
+        @click="editInvoice"
+      />
       <AppButton text="Mark as paid" />
       <AppButton text="Delete" />
     </div>
@@ -16,10 +19,19 @@
 import type Invoice from "@/types/Invoice";
 import InvoiceStatus from "@/components/InvoiceStatus.vue";
 import AppButton from "@/components/AppButton.vue";
+import { useRouter } from "vue-router";
+
+const router = useRouter();
 
 const props = defineProps<{
   invoice: Invoice;
 }>();
+
+const editInvoice = () => {
+  router.push({
+    path: `/invoice/${props.invoice.id}/edit`,
+  });
+};
 </script>
 
 <style scoped>
