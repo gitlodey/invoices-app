@@ -5,6 +5,7 @@
       <PageHeader />
       <RouterView class="content--route" />
     </div>
+    <AppOverlay />
   </div>
 </template>
 
@@ -12,6 +13,7 @@
 import { RouterView } from "vue-router";
 import PageSidebar from "@/components/PageSidebar.vue";
 import PageHeader from "@/components/PageHeader.vue";
+import AppOverlay from "@/components/AppOverlay.vue";
 </script>
 
 <style scoped>

@@ -10,7 +10,10 @@
         @click="editInvoice"
       />
       <AppButton text="Mark as paid" />
-      <AppButton text="Delete" />
+      <AppButton
+        text="Delete"
+        @click="showConfirmation"
+      />
     </div>
   </div>
 </template>
@@ -20,8 +23,12 @@ import type Invoice from "@/types/Invoice";
 import InvoiceStatus from "@/components/InvoiceStatus.vue";
 import AppButton from "@/components/AppButton.vue";
 import { useRouter } from "vue-router";
+import { useUi } from "@/stores/ui";
+import { useInvoices } from "@/stores/Invoices";
 
 const router = useRouter();
+const uiStore = useUi();
+const invoicesStore = useInvoices();
 
 const props = defineProps<{
   invoice: Invoice;
@@ -30,6 +37,21 @@ const props = defineProps<{
 const editInvoice = () => {
   router.push({
     path: `/invoice/${props.invoice.id}/edit`,
+  });
+};
+
+const showConfirmation = () => {
+  uiStore.setConfirmation({
+    title: "Are you sure?",
+    description: "You can't rollback invoice deletion",
+    handler: deleteInvoice,
+  });
+};
+
+const deleteInvoice = async () => {
+  await invoicesStore.deleteInvoice(props.invoice);
+  await router.push({
+    path: `/`,
   });
 };
 </script>
