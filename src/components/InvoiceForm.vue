@@ -104,6 +104,8 @@
     <AppButton
       text="Add new item"
       icon="plus"
+      color="secondary"
+      :wide="true"
       @click="addNewItem"
     />
   </div>

@@ -23,9 +23,14 @@ import MainPage from "@/views/MainPage.vue";
   --color-dark-secondary: #252945;
   --color-gray-light: #dfe3fa;
   --color-gray-dark: #888eb0;
+  --color-accent: #7e88c3;
+  --color-coal: #0c0316;
+  --color-warning: #ec5757;
+  --color-warning-hover: #ff9797;
   --column-gap-m: 20px;
   --column-gap-s: 10px;
-  --color-bg: #f8f8fb;
+  --color-light: #f8f8fb;
+  --color-bg: var(--color-light);
   --color-success: #33d69f;
   --color-success-bg: rgba(51, 214, 159, 0.1);
   --color-pending: #ff9001;
@@ -36,11 +41,23 @@ import MainPage from "@/views/MainPage.vue";
   --color-text-main: var(--color-dark);
   --button-default-color: var(--color-main);
   --button-default-hover-color: var(--color-secondary);
+  --button-default-text-color: var(--color-light);
+  --button-secondary-color: var(--color-dark-secondary);
+  --button-secondary-hover-color: #fff;
+  --button-secondary-text-color: var(--color-gray-light);
+  --button-dark-color: #373b54;
+  --button-dark-hover-color: var(--color-coal);
+  --button-dark-text-color: var(--color-gray-light);
 }
 :root.dark-theme {
   --color-bg: var(--color-dark);
   --color-invoice-item-bg: var(--color-dark-secondary);
   --color-text-main: #fff;
+  --button-secondary-color: var(--color-light);
+  --button-secondary-hover-color: var(--color-gray-light);
+  --button-secondary-text-color: var(--color-accent);
+  --button-dark-hover-color: var(--color-dark);
+  --button-dark-text-color: var(--color-light);
 }
 body {
   margin: 0;

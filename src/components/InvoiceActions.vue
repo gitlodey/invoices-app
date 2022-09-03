@@ -7,15 +7,17 @@
     <div class="invoice-actions--right">
       <AppButton
         text="Edit"
+        color="dark"
         @click="editInvoice"
+      />
+      <AppButton
+        text="Delete"
+        color="warning"
+        @click="showConfirmation"
       />
       <AppButton
         text="Mark as paid"
         @click="markAsPaid"
-      />
-      <AppButton
-        text="Delete"
-        @click="showConfirmation"
       />
     </div>
   </div>
