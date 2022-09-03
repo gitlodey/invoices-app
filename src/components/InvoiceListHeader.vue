@@ -2,7 +2,10 @@
   <div class="page-header">
     <div class="page-header--left">
       <h1>Invoices</h1>
-      <p>No invoice</p>
+      <p v-if="quantity && quantity > 0">
+        There are {{ quantity }} total invoices
+      </p>
+      <p v-else>No invoices</p>
     </div>
 
     <InvoicesFilter class="page-header--filter" />
@@ -25,6 +28,10 @@ import AppButton from "@/components/AppButton.vue";
 import InvoicesFilter from "@/components/InvoicesFilter.vue";
 import { useRouter } from "vue-router";
 const router = useRouter();
+
+const props = defineProps<{
+  quantity: number;
+}>();
 
 const openNewInvoicePage = () => {
   router.push({

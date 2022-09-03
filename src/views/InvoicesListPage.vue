@@ -1,5 +1,6 @@
 <template>
   <div class="invoices-list-page">
+    <InvoiceListHeader :quantity="invoicesStore?.invoices?.length" />
     <InvoiceListItem
       v-if="invoicesStore.invoices && invoicesStore.invoices.length"
       v-for="invoice in invoicesStore.invoices"
@@ -34,12 +35,13 @@ import EmptyPage from "@/views/EmptyPage.vue";
 import InvoiceListItem from "@/components/InvoiceListItem.vue";
 import PageSlide from "@/components/PageSlide.vue";
 import { useRouter } from "vue-router";
-const router = useRouter();
 import data from "@/assets/data/data.json";
 import type Invoice from "@/types/Invoice";
 import { onMounted } from "vue";
 import { useInvoices } from "@/stores/Invoices";
+import InvoiceListHeader from "@/components/InvoiceListHeader.vue";
 
+const router = useRouter();
 const invoicesStore = useInvoices();
 
 onMounted(async () => {
