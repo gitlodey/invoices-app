@@ -186,6 +186,6 @@ const addNewItem = () => {
 .invoice-form--section-header {
   font-weight: bold;
   color: var(--color-secondary);
-  margin-bottom: 20px;
+  margin: 50px 0 30px 0;
 }
 </style>

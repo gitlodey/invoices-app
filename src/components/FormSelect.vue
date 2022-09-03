@@ -1,7 +1,7 @@
 <template>
   <div class="form-field">
     <div
-      class="label"
+      class="form-field--label text-12-400"
       v-if="label"
     >
       {{ label }}

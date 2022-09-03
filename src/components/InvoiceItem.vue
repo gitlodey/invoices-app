@@ -11,6 +11,7 @@
       @update:modelValue="onQuantityUpdated"
       type="number"
       rules="required"
+      :small-padding="true"
     />
     <FormInput
       name="itemPrice"

@@ -48,6 +48,7 @@ import MainPage from "@/views/MainPage.vue";
   --button-dark-color: #373b54;
   --button-dark-hover-color: var(--color-coal);
   --button-dark-text-color: var(--color-gray-light);
+  --input-border-color: transparent;
 }
 :root.dark-theme {
   --color-bg: var(--color-dark);
@@ -58,12 +59,17 @@ import MainPage from "@/views/MainPage.vue";
   --button-secondary-text-color: var(--color-accent);
   --button-dark-hover-color: var(--color-dark);
   --button-dark-text-color: var(--color-light);
+  --input-border-color: #21233a;
 }
 body {
   margin: 0;
   background-color: var(--color-bg);
   color: var(--color-text-main);
   font-family: "League Spartan", sans-serif;
+}
+input,
+select {
+  color: var(--color-text-main);
 }
 .text-32-700 {
   font-size: 32px;

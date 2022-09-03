@@ -1,6 +1,6 @@
 <template>
   <div class="invoice-new">
-    <h2>New invoice</h2>
+    <div class="text-32-700">New invoice</div>
     <InvoiceForm />
   </div>
 </template>
