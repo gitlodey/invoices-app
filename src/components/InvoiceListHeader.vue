@@ -8,7 +8,11 @@
       <p v-else>No invoices</p>
     </div>
 
-    <InvoicesFilter class="page-header--filter" />
+    <InvoicesFilter
+      class="page-header--filter"
+      :selected-filter="selectedFilter"
+      @change="$emit('filter', $event)"
+    />
 
     <AppButton
       icon="plus"
@@ -27,10 +31,12 @@
 import AppButton from "@/components/AppButton.vue";
 import InvoicesFilter from "@/components/InvoicesFilter.vue";
 import { useRouter } from "vue-router";
+import type InvoiceStatuses from "@/enums/InvoiceStatuses";
 const router = useRouter();
 
 const props = defineProps<{
   quantity: number;
+  selectedFilter?: InvoiceStatuses;
 }>();
 
 const openNewInvoicePage = () => {

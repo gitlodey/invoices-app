@@ -6,14 +6,12 @@ import type InvoiceStatuses from "@/enums/InvoiceStatuses";
 interface IInvoicesState {
   invoices: Invoice[];
   currentInvoice: Invoice | undefined;
-  filter?: InvoiceStatuses;
 }
 
 export const useInvoices = defineStore("Invoices", {
   state(): IInvoicesState {
     return {
       invoices: [],
-      filter: undefined,
       currentInvoice: undefined,
     };
   },
@@ -26,6 +24,7 @@ export const useInvoices = defineStore("Invoices", {
     },
     async getInvoices(filter?: InvoiceStatuses) {
       const invoices = await api.getInvoices(filter);
+      this.$reset();
       if (invoices) {
         this.invoices.push(...invoices);
       }

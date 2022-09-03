@@ -1,35 +1,54 @@
 <template>
-  <select>
-    <option>Filter by status</option>
+  <select @change="onChange">
     <option
-      v-for="period in periods"
-      :key="period.value"
+      hidden
+      selected
+      value=""
     >
-      {{ period.label }}
+      Filter by status
+    </option>
+    <option value="">All statuses</option>
+    <option
+      v-for="status in statuses"
+      :key="status.value"
+      :value="status.value"
+      :selected="status.value === selectedFilter"
+    >
+      {{ status.label }}
     </option>
   </select>
 </template>
 
 <script lang="ts" setup>
-import InvoicePeriods from "@/enums/InvoicePeriods";
-const periods = [
+import InvoiceStatuses from "@/enums/InvoiceStatuses";
+import type IInvoiceStatuses from "@/enums/InvoiceStatuses";
+import { useCapitalize } from "@/composables/useCapitalize";
+import { defineEmits } from "vue";
+
+const props = defineProps<{
+  selectedFilter?: IInvoiceStatuses;
+}>();
+
+const emits = defineEmits(["change"]);
+const statuses = [
   {
-    value: InvoicePeriods.day,
-    label: `Net ${InvoicePeriods.day} Day`,
+    value: InvoiceStatuses.draft,
+    label: useCapitalize(InvoiceStatuses.draft),
   },
   {
-    value: InvoicePeriods.week,
-    label: `Net ${InvoicePeriods.week} Days`,
+    value: InvoiceStatuses.pending,
+    label: useCapitalize(InvoiceStatuses.pending),
   },
   {
-    value: InvoicePeriods.twoWeeks,
-    label: `Net ${InvoicePeriods.twoWeeks} Days`,
-  },
-  {
-    value: InvoicePeriods.month,
-    label: `Net ${InvoicePeriods.month} Days`,
+    value: InvoiceStatuses.paid,
+    label: useCapitalize(InvoiceStatuses.paid),
   },
 ];
+
+const onChange = (event: Event) => {
+  const target = event.target as HTMLSelectElement;
+  emits("change", target.value ? target.value : undefined);
+};
 </script>
 
 <style scoped></style>

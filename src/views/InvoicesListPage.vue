@@ -1,6 +1,10 @@
 <template>
   <div class="invoices-list-page">
-    <InvoiceListHeader :quantity="invoicesStore?.invoices?.length" />
+    <InvoiceListHeader
+      :quantity="invoicesStore?.invoices?.length"
+      :selected-filter="selectedFilter"
+      @filter="onFilter"
+    />
     <InvoiceListItem
       v-if="invoicesStore.invoices && invoicesStore.invoices.length"
       v-for="invoice in invoicesStore.invoices"
@@ -34,18 +38,29 @@
 import EmptyPage from "@/views/EmptyPage.vue";
 import InvoiceListItem from "@/components/InvoiceListItem.vue";
 import PageSlide from "@/components/PageSlide.vue";
-import { useRouter } from "vue-router";
+import { useRoute, useRouter } from "vue-router";
 import data from "@/assets/data/data.json";
 import type Invoice from "@/types/Invoice";
-import { onMounted } from "vue";
+import { onMounted, ref } from "vue";
 import { useInvoices } from "@/stores/Invoices";
 import InvoiceListHeader from "@/components/InvoiceListHeader.vue";
+import type InvoiceStatuses from "@/enums/InvoiceStatuses";
+import InvoiceStatusesEnum from "@/enums/InvoiceStatuses";
 
 const router = useRouter();
+const route = useRoute();
 const invoicesStore = useInvoices();
 
+const selectedFilter = ref<InvoiceStatuses | undefined>();
+
 onMounted(async () => {
-  await invoicesStore.getInvoices();
+  const statuses = Object.keys(InvoiceStatusesEnum);
+  const queryStatus = route.query.status as string;
+  const filter = statuses.includes(queryStatus)
+    ? (queryStatus as InvoiceStatuses)
+    : undefined;
+  selectedFilter.value = filter;
+  await invoicesStore.getInvoices(filter);
   if (invoicesStore.invoices.length === 0) {
     // I'm adding mock data to the DB for the first visit just for the page not to be empty.
     data.forEach((invoice) => {
@@ -68,6 +83,11 @@ const goToInvoicePage = (invoice: Invoice) => {
       invoiceId: invoice.id,
     },
   });
+};
+
+const onFilter = async (filter?: InvoiceStatuses) => {
+  await invoicesStore.getInvoices(filter);
+  await router.push({ query: { status: filter } });
 };
 </script>
 <style scoped>
