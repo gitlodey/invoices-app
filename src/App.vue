@@ -57,7 +57,6 @@ import MainPage from "@/views/MainPage.vue";
   --button-secondary-color: var(--color-light);
   --button-secondary-hover-color: var(--color-gray-light);
   --button-secondary-text-color: var(--color-accent);
-  --button-dark-hover-color: var(--color-dark);
   --button-dark-text-color: var(--color-light);
   --input-border-color: #21233a;
 }

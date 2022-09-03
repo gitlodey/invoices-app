@@ -1,5 +1,8 @@
 <template>
-  <div class="invoice-form">
+  <Form
+    class="invoice-form"
+    @submit="$emit('submit')"
+  >
     <div class="invoice-form--section-header">Bill from</div>
     <div class="invoice-form--row-1-item">
       <FormInput
@@ -108,11 +111,13 @@
       :wide="true"
       @click="addNewItem"
     />
-  </div>
+
+    <slot></slot>
+  </Form>
 </template>
 
 <script lang="ts" setup>
-import { defineRule } from "vee-validate";
+import { defineRule, Form } from "vee-validate";
 import { required } from "@vee-validate/rules";
 import FormInput from "@/components/FormInput.vue";
 import FormSelect from "@/components/FormSelect.vue";
@@ -126,7 +131,7 @@ const props = defineProps<{
   invoice?: Invoice;
 }>();
 const form = reactive<Invoice>({
-  id: "",
+  id: props.invoice?.id || "",
   createdAt: "",
   paymentDue: "",
   description: "",
@@ -163,6 +168,12 @@ const addNewItem = () => {
     total: 0,
   });
 };
+
+const saveAsDraft = () => {};
+
+defineExpose({
+  saveAsDraft,
+});
 </script>
 
 <style scoped>

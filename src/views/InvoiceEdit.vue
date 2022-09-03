@@ -4,7 +4,19 @@
     <InvoiceForm
       v-if="invoicesState.currentInvoice"
       :invoice="invoicesState.currentInvoice"
-    />
+    >
+      <div class="form-buttons">
+        <AppButton
+          text="Cancel"
+          @click="$router.go(-1)"
+          color="dark"
+        />
+        <AppButton
+          text="Save changes"
+          type="submit"
+        />
+      </div>
+    </InvoiceForm>
   </div>
 </template>
 
@@ -13,6 +25,7 @@ import InvoiceForm from "@/components/InvoiceForm.vue";
 import { useInvoices } from "@/stores/Invoices";
 import { useRoute } from "vue-router";
 import { onMounted } from "vue";
+import AppButton from "@/components/AppButton.vue";
 
 const route = useRoute();
 
@@ -29,4 +42,13 @@ onMounted(() => {
 });
 </script>
 
-<style scoped></style>
+<style scoped>
+.form-buttons {
+  display: flex;
+  justify-content: flex-end;
+  padding: 35px 0;
+}
+.form-buttons .app-button:not(:last-child) {
+  margin-right: 10px;
+}
+</style>

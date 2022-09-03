@@ -2,6 +2,7 @@
   <button
     class="app-button"
     :class="classList"
+    :type="type"
     @click="onClick"
   >
     <AppIcon
@@ -26,6 +27,7 @@ const props = defineProps<{
   wide?: boolean;
   disabled?: boolean;
   iconStyle?: Partial<CSSStyleDeclaration>;
+  type?: string;
 }>();
 
 const emits = defineEmits(["click"]);
