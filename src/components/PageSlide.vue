@@ -59,6 +59,8 @@ const props = defineProps<{
   left: var(--app-sidebar-width);
   width: 600px;
   padding: 60px 50px 0 50px;
+  height: 100vh;
+  overflow-y: scroll;
   z-index: 1;
 }
 </style>
