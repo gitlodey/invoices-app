@@ -7,6 +7,13 @@ import MainPage from "@/views/MainPage.vue";
 </template>
 
 <style>
+/*
+  Spartan font was de-listed from Google fonts.
+  League Spartan is the upgraded version of Spartan
+  that is offering a broader glyphset and fixing former Spartan’s issues.
+*/
+@import url("https://fonts.googleapis.com/css2?family=League+Spartan:wght@400;700&display=swap");
+
 :root {
   --logo-border-radius: 15px;
   --app-sidebar-width: 100px;
@@ -39,6 +46,36 @@ body {
   margin: 0;
   background-color: var(--color-bg);
   color: var(--color-text-main);
-  font-family: Helvetica, serif;
+  font-family: "League Spartan", sans-serif;
+}
+.text-32-700 {
+  font-size: 32px;
+  font-weight: 700;
+  line-height: 36px;
+}
+.text-20-700 {
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 22px;
+}
+.text-16-700 {
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 24px;
+}
+.text-12-700 {
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 15px;
+}
+.text-12-400 {
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 15px;
+}
+.text-11-400 {
+  font-size: 11px;
+  font-weight: 400;
+  line-height: 18px;
 }
 </style>
