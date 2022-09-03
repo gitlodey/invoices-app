@@ -1,5 +1,8 @@
 <template>
-  <div class="app-logo">
+  <div
+    class="app-logo"
+    @click="$router.push('/')"
+  >
     <div class="app-logo--bottom"></div>
     <img
       class="app-logo--image"
