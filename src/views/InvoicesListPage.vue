@@ -11,7 +11,6 @@
       class="invoice-item"
       :invoice="invoice"
       :key="invoice.id"
-      @click="goToInvoicePage(invoice)"
     />
     <EmptyPage
       v-else
@@ -73,15 +72,6 @@ onMounted(async () => {
 const onInvoiceFormClose = () => {
   router.push({
     path: "/",
-  });
-};
-
-const goToInvoicePage = (invoice: Invoice) => {
-  router.push({
-    path: `/invoice/${invoice.id}`,
-    params: {
-      invoiceId: invoice.id,
-    },
   });
 };
 

@@ -1,6 +1,9 @@
 <template>
   <div class="invoice-list-item">
-    <div class="invoice-list-item--id">
+    <div
+      class="invoice-list-item--id"
+      @click="goToInvoicePage"
+    >
       <span class="invoice-list-item--id-prefix">#</span>
       {{ invoice.id }}
     </div>
@@ -12,6 +15,7 @@
       <AppIcon
         icon="arrow-right"
         class="invoice-list-item--arrow"
+        @click="goToInvoicePage"
       />
     </div>
   </div>
@@ -21,10 +25,22 @@
 import type Invoice from "@/types/Invoice";
 import InvoiceStatus from "@/components/InvoiceStatus.vue";
 import AppIcon from "@/components/AppIcon.vue";
+import { useRouter } from "vue-router";
 
 const props = defineProps<{
   invoice: Invoice;
 }>();
+
+const router = useRouter();
+
+const goToInvoicePage = () => {
+  router.push({
+    name: "Invoice page",
+    params: {
+      invoiceId: props.invoice.id,
+    },
+  });
+};
 </script>
 
 <style scoped>
@@ -37,6 +53,8 @@ const props = defineProps<{
   border-radius: 10px;
   padding: 16px 30px;
   transition: 0.3s ease background-color;
+}
+.invoice-list-item--id {
   cursor: pointer;
 }
 .invoice-list-item--id,
@@ -58,5 +76,6 @@ const props = defineProps<{
   width: 7px;
   height: 10px;
   margin-left: 20px;
+  cursor: pointer;
 }
 </style>
