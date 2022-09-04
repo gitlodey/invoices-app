@@ -26,5 +26,10 @@ const avatarSrc = ref(props.profile?.avatar || "/src/assets/image-avatar.jpg");
 .profile-avatar--image {
   max-width: 40px;
   border-radius: 50%;
+  transition: 0.3s ease all;
+}
+.profile-avatar:hover .profile-avatar--image {
+  max-width: 100%;
+  border-radius: 0;
 }
 </style>

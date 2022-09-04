@@ -1,8 +1,8 @@
 <template>
   <div class="theme-switcher">
     <AppIcon
-      :icon="iconName"
       class="theme-switcher--image"
+      :icon="iconName"
       :alt="iconAlt"
       @click="toggleTheme"
     />
