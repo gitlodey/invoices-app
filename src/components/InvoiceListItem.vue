@@ -26,6 +26,7 @@ import type Invoice from "@/types/Invoice";
 import InvoiceStatus from "@/components/InvoiceStatus.vue";
 import AppIcon from "@/components/AppIcon.vue";
 import { useRouter } from "vue-router";
+import Routes from "@/enums/Routes";
 
 const props = defineProps<{
   invoice: Invoice;
@@ -35,7 +36,7 @@ const router = useRouter();
 
 const goToInvoicePage = () => {
   router.push({
-    name: "Invoice page",
+    name: Routes.invoice,
     params: {
       invoiceId: props.invoice.id,
     },

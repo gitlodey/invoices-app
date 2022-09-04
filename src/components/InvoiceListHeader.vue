@@ -32,6 +32,7 @@ import AppButton from "@/components/AppButton.vue";
 import InvoicesFilter from "@/components/InvoicesFilter.vue";
 import { useRouter } from "vue-router";
 import type InvoiceStatuses from "@/enums/InvoiceStatuses";
+import Routes from "@/enums/Routes";
 const router = useRouter();
 
 const props = defineProps<{
@@ -41,7 +42,7 @@ const props = defineProps<{
 
 const openNewInvoicePage = () => {
   router.push({
-    path: "/new",
+    name: Routes.new,
   });
 };
 </script>

@@ -1,7 +1,7 @@
 <template>
   <div
     class="app-logo"
-    @click="$router.push('/')"
+    @click="$router.push({ name: Routes.invoicesList })"
   >
     <div class="app-logo--bottom"></div>
     <img
@@ -12,10 +12,8 @@
   </div>
 </template>
 
-<script>
-export default {
-  name: "AppLogo",
-};
+<script lang="ts" setup>
+import Routes from "@/enums/Routes";
 </script>
 
 <style scoped>

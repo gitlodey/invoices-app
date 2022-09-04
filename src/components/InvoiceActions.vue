@@ -32,6 +32,7 @@ import { useRouter } from "vue-router";
 import { useUi } from "@/stores/ui";
 import { useInvoices } from "@/stores/Invoices";
 import InvoiceStatuses from "@/enums/InvoiceStatuses";
+import Routes from "@/enums/Routes";
 
 const router = useRouter();
 const uiStore = useUi();
@@ -45,7 +46,10 @@ const status = ref(props.invoice.status);
 
 const editInvoice = () => {
   router.push({
-    path: `/invoice/${props.invoice.id}/edit`,
+    name: Routes.edit,
+    params: {
+      invoiceId: props.invoice.id,
+    },
   });
 };
 
@@ -61,7 +65,7 @@ const showConfirmation = () => {
 const deleteInvoice = async () => {
   await invoicesStore.deleteInvoice(props.invoice);
   await router.push({
-    path: `/`,
+    name: Routes.invoicesList,
   });
 };
 
