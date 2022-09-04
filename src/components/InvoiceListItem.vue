@@ -57,6 +57,11 @@ const goToInvoicePage = () => {
 }
 .invoice-list-item--id {
   cursor: pointer;
+  padding: 5px 0;
+  transition: 0.3s ease color;
+}
+.invoice-list-item--id:hover {
+  color: var(--color-text-hover);
 }
 .invoice-list-item--id,
 .invoice-list-item--total {
@@ -74,9 +79,10 @@ const goToInvoicePage = () => {
   align-items: center;
 }
 .invoice-list-item--arrow {
+  padding: 10px 0 10px 10px;
   width: 7px;
   height: 10px;
-  margin-left: 20px;
+  margin-left: 10px;
   cursor: pointer;
 }
 </style>
