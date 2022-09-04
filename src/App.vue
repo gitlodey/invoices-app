@@ -39,6 +39,7 @@ import MainPage from "@/views/MainPage.vue";
   --color-draft-bg: rgba(222, 227, 249, 0.1);
   --color-invoice-item-bg: #fff;
   --color-text-main: var(--color-dark);
+  --color-text-secondary: var(--color-gray-dark);
   --button-default-color: var(--color-main);
   --button-default-hover-color: var(--color-secondary);
   --button-default-text-color: var(--color-light);

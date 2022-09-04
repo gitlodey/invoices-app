@@ -95,6 +95,7 @@ watch(
 }
 .form-field--input.__small-padding {
   padding: 0 3px;
+  text-align: center;
 }
 .form-field--input:focus-visible {
   border-color: var(--color-main);

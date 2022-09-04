@@ -1,5 +1,6 @@
 <template>
   <img
+    class="app-icon"
     :src="src"
     :alt="alt"
   />
@@ -15,4 +16,11 @@ const src = computed(() => {
 });
 </script>
 
-<style scoped></style>
+<style scoped>
+.app-icon {
+  transition: 0.3s ease all;
+}
+.app-icon:hover {
+  filter: brightness(1.4);
+}
+</style>

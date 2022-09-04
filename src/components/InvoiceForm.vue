@@ -106,11 +106,14 @@
       />
     </div>
 
-    <InvoiceItems :items="form.items" />
+    <InvoiceItems
+      :items="itemsWithIds"
+      @delete="onDelete"
+    />
     <AppButton
       text="Add new item"
       icon="plus"
-      color="secondary"
+      color="dark"
       :wide="true"
       @click="addNewItem"
     />
@@ -183,6 +186,17 @@ const paymentTermsOptions = computed(() => {
     });
 });
 
+const minDate = computed(() => {
+  return useAddDays(form.createdAt, 1);
+});
+
+const itemsWithIds = computed(() => {
+  return form.items.map((item) => {
+    item.id = Math.random();
+    return item;
+  });
+});
+
 const updatePaymentTerms = (days: string) => {
   form.paymentTerms = Number(days);
   form.paymentDue = useAddDays(form.createdAt, form.paymentTerms);
@@ -195,10 +209,6 @@ const updatePaymentDue = (date: string) => {
   }
 };
 
-const minDate = computed(() => {
-  return useAddDays(form.createdAt, 1);
-});
-
 const addNewItem = () => {
   form.items.push({
     name: "",
@@ -206,6 +216,12 @@ const addNewItem = () => {
     price: 0,
     total: 0,
   });
+};
+
+const onDelete = (index: number) => {
+  if (index > -1) {
+    form.items.splice(index, 1);
+  }
 };
 
 const saveAsDraft = async () => {

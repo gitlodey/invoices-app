@@ -1,12 +1,12 @@
 <template>
   <div class="invoice-item">
     <FormInput
-      name="itemName"
+      :name="`${item.id}--itemName`"
       v-model="item.name"
       rules="required"
     />
     <FormInput
-      name="itemQuantity"
+      :name="`${item.id}--itemQuantity`"
       :model-value.number="item.quantity"
       @update:modelValue="onQuantityUpdated"
       type="number"
@@ -14,19 +14,27 @@
       :small-padding="true"
     />
     <FormInput
-      name="itemPrice"
+      :name="`${item.id}--itemPrice`"
       :model-value.number="item.price"
       @update:modelValue="onPriceUpdated"
       type="number"
       rules="required"
     />
-    <div>{{ item.total }}</div>
+    <div class="invoice-item--total">
+      {{ item.total }}
+      <AppIcon
+        class="invoice-item--delete"
+        icon="delete"
+        @click="$emit('delete', item)"
+      />
+    </div>
   </div>
 </template>
 
 <script lang="ts" setup>
 import FormInput from "@/components/FormInput.vue";
 import type { IInvoiceItem } from "@/types/Invoice";
+import AppIcon from "@/components/AppIcon.vue";
 
 const props = defineProps<{
   item: IInvoiceItem;
@@ -47,5 +55,14 @@ const onPriceUpdated = (price: number) => {
   display: grid;
   grid-template-columns: 4fr 1fr 2fr 2fr;
   grid-column-gap: 20px;
+}
+.invoice-item--total {
+  display: flex;
+  padding-top: 17px;
+  justify-content: space-between;
+}
+.invoice-item--delete {
+  height: 16px;
+  cursor: pointer;
 }
 </style>

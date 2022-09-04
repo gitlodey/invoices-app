@@ -11,6 +11,7 @@ export interface IInvoiceItem {
   quantity: number;
   price: number;
   total: number;
+  id?: number;
 }
 interface Invoice {
   id: string;
