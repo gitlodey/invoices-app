@@ -55,12 +55,16 @@ const openNewInvoicePage = () => {
   flex: 1 0 auto;
 }
 .invoice-list-header--filter {
-  position: relative;
   border: none;
   background-color: var(--color-bg);
   color: var(--color-text-main);
   padding-right: 20px;
   margin-right: 30px;
+  cursor: pointer;
+  transition: 0.3s ease color;
+}
+.invoice-list-header--filter:hover {
+  color: var(--color-text-hover);
 }
 .invoice-list-header--filter:focus-visible {
   outline: none;
