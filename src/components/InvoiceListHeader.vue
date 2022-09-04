@@ -1,6 +1,6 @@
 <template>
-  <div class="page-header">
-    <div class="page-header--left">
+  <div class="invoice-list-header">
+    <div class="invoice-list-header--left">
       <h1>Invoices</h1>
       <p v-if="quantity && quantity > 0">
         There are {{ quantity }} total invoices
@@ -9,7 +9,7 @@
     </div>
 
     <InvoicesFilter
-      class="page-header--filter"
+      class="invoice-list-header--filter text-16-700"
       :selected-filter="selectedFilter"
       @change="$emit('filter', $event)"
     />
@@ -46,14 +46,19 @@ const openNewInvoicePage = () => {
 };
 </script>
 <style scoped>
-.page-header {
+.invoice-list-header {
   display: flex;
   align-items: center;
 }
-.page-header--left {
+.invoice-list-header--left {
   flex: 1 0 auto;
 }
-.page-header--filter {
+.invoice-list-header--filter {
+  position: relative;
+  border: none;
+  background-color: var(--color-bg);
+  color: var(--color-text-main);
+  padding-right: 20px;
   margin-right: 30px;
 }
 </style>
