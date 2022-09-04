@@ -51,8 +51,9 @@ const editInvoice = () => {
 
 const showConfirmation = () => {
   uiStore.setConfirmation({
-    title: "Are you sure?",
-    description: "You can't rollback invoice deletion",
+    title: "Confirm deletion",
+    description: `Are you sure you want to delete invoice #${props.invoice.id}? This action can not be undone.`,
+    confirmButtonText: "Delete",
     handler: deleteInvoice,
   });
 };

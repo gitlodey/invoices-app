@@ -53,14 +53,14 @@ import MainPage from "@/views/MainPage.vue";
   --input-border-color: transparent;
 }
 :root.dark-theme {
-  --color-bg: var(--color-dark);
-  --color-invoice-item-bg: var(--color-dark-secondary);
-  --color-text-main: #fff;
+  --color-bg: #141625;
+  --color-invoice-item-bg: var(--color-dark);
   --button-secondary-color: var(--color-light);
   --button-secondary-hover-color: var(--color-gray-light);
   --button-secondary-text-color: var(--color-accent);
   --button-dark-text-color: var(--color-light);
   --input-border-color: #21233a;
+  --color-text-main: #ddd;
 }
 body {
   margin: 0;

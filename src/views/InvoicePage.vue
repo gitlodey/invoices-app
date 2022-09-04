@@ -37,13 +37,6 @@ onMounted(async () => {
   await invoicesStore.getInvoice(id);
 });
 
-const goBack = () => {
-  invoicesStore.$reset();
-  router.push({
-    path: "/",
-  });
-};
-
 const onInvoiceFormClose = () => {
   router.push({
     path: `/invoice/${invoicesStore.currentInvoice?.id}`,

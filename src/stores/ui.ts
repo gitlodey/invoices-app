@@ -8,6 +8,7 @@ interface IUiStore {
   confirmationTitle: string;
   confirmationDescription: string;
   confirmationHandler?: Function;
+  confirmButtonText?: string;
 }
 
 export const useUi = defineStore("ui", {
@@ -17,6 +18,7 @@ export const useUi = defineStore("ui", {
       overlayComponent: undefined,
       confirmationTitle: "",
       confirmationDescription: "",
+      confirmButtonText: "",
     };
   },
   actions: {
@@ -24,16 +26,19 @@ export const useUi = defineStore("ui", {
       title,
       description,
       handler,
+      confirmButtonText,
     }: {
       title: string;
       description: string;
       handler?: Function;
+      confirmButtonText?: string;
     }) {
       this.overlay = true;
       this.overlayComponent = ModalConfirmation;
       this.confirmationTitle = title;
       this.confirmationDescription = description;
       this.confirmationHandler = handler;
+      this.confirmButtonText = confirmButtonText;
     },
     closeConfirmation() {
       this.hideOverlay();

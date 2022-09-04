@@ -8,19 +8,19 @@
         <div>Total</div>
       </div>
       <div
-        class="invoice-items-table--item"
+        class="invoice-items-table--item text-16-700"
         v-for="item in items"
         :key="item.name"
       >
         <div>{{ item.name }}</div>
-        <div>{{ item.quantity }}</div>
+        <div class="invoice-items-table--quantity">{{ item.quantity }}</div>
         <div class="invoice-items-table--price">{{ item.price }}</div>
         <div class="invoice-items-table--total">{{ item.total }}</div>
       </div>
     </div>
-    <div class="invoice-items-table--total">
+    <div class="invoice-items-table--footer">
       <div>Amount Due</div>
-      <div>{{ total }}</div>
+      <div class="text-32-700">£ {{ total }}</div>
     </div>
   </div>
 </template>
@@ -35,21 +35,39 @@ const props = defineProps<{
 </script>
 
 <style scoped>
+.invoice-items-table {
+  background-color: var(--color-dark-secondary);
+  border-radius: 10px;
+}
 .invoice-items-table--header,
 .invoice-items-table--item {
   display: grid;
   grid-column-gap: 20px;
   grid-template-columns: 4fr 1fr 2fr 2fr;
 }
-
+.invoice-items-table--header > div:nth-child(2),
+.invoice-items-table--quantity {
+  text-align: center;
+}
+.invoice-items-table--header > div:nth-child(3),
+.invoice-items-table--header > div:nth-child(4),
 .invoice-items-table--price,
 .invoice-items-table--total {
   text-align: right;
 }
-
-.invoice-items-table--total {
+.invoice-items-table--footer {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  background-color: var(--color-coal);
+  color: #fff;
+  border-radius: 0 0 10px 10px;
+}
+.invoice-items-table--content,
+.invoice-items-table--footer {
+  padding: 30px;
+}
+.invoice-items-table--header {
+  margin-bottom: 30px;
 }
 </style>

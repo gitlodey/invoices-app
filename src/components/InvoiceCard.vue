@@ -1,38 +1,44 @@
 <template>
   <div class="invoice-card">
-    <div class="invoice-card--row">
+    <div class="invoice-card--row __two-col">
       <div class="invoice-card--cell">
-        <div># {{ invoice.id }}</div>
+        <div class="invoice-card--id text-20-700">
+          <span class="invoice-card--id-sign">#</span>{{ invoice.id }}
+        </div>
         <div>{{ invoice.description }}</div>
       </div>
-      <div class="invoice-card--cell">
-        <div>{{ invoice.senderAddress.street }}</div>
-        <div>{{ invoice.senderAddress.city }}</div>
-        <div>{{ invoice.senderAddress.postCode }}</div>
-        <div>{{ invoice.senderAddress.country }}</div>
+      <div
+        class="invoice-card--sender-address invoice-card--cell __align-right"
+      >
+        <div v-for="key in invoice.senderAddress">
+          {{ key }}
+        </div>
       </div>
     </div>
 
-    <div class="invoice-card--row">
-      <div class="invoice-card--cell">
-        <div>Invoice Date</div>
-        {{ invoice.createdAt }}
+    <div class="invoice-card--row __three-col">
+      <div class="invoice-card--dates invoice-card--cell">
+        <div>
+          <div class="invoice-card--block-title">Invoice Date</div>
+          <div class="text-20-700">{{ invoice.createdAt }}</div>
+        </div>
 
-        <div>Payment due</div>
-        {{ invoice.paymentDue }}
+        <div>
+          <div class="invoice-card--block-title">Payment due</div>
+          <div class="text-20-700">{{ invoice.paymentDue }}</div>
+        </div>
       </div>
       <div class="invoice-card--cell">
-        <div>Bill to</div>
-        <div>{{ invoice.clientName }}</div>
+        <div class="invoice-card--block-title">Bill to</div>
+        <div class="text-20-700">{{ invoice.clientName }}</div>
 
-        <div>{{ invoice.clientAddress.street }}</div>
-        <div>{{ invoice.clientAddress.city }}</div>
-        <div>{{ invoice.clientAddress.postCode }}</div>
-        <div>{{ invoice.clientAddress.country }}</div>
+        <div v-for="key in invoice.clientAddress">
+          {{ key }}
+        </div>
       </div>
       <div class="invoice-card--cell">
-        <div>Send to</div>
-        <div>{{ invoice.clientEmail }}</div>
+        <div class="invoice-card--block-title">Send to</div>
+        <div class="text-20-700">{{ invoice.clientEmail }}</div>
       </div>
     </div>
 
@@ -58,7 +64,37 @@ const props = defineProps<{
   padding: 50px;
   border-radius: 20px;
 }
+.invoice-card--id-sign {
+  color: var(--color-text-secondary);
+}
+.invoice-card--id {
+  margin-bottom: 15px;
+}
 .invoice-card--row {
+  display: grid;
+  grid-column-gap: 20px;
+  margin-bottom: 30px;
+}
+.invoice-card--row.__two-col {
+  grid-template-columns: 1fr 1fr;
+}
+.invoice-card--row.__three-col {
+  grid-template-columns: 2fr 2fr 3fr;
+}
+.invoice-card--cell.__align-right {
+  text-align: right;
+}
+.invoice-card--cell > div,
+.invoice-card--sender-address > div {
+  margin-bottom: 10px;
+}
+.invoice-card--block-title {
+  font-size: 16px;
+  margin-bottom: 15px;
+}
+.invoice-card--dates {
   display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 </style>
