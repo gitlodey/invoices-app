@@ -1,12 +1,6 @@
 <template>
   <div class="invoice-page">
-    <button
-      class="go-back"
-      @click="goBack"
-    >
-      <AppIcon icon="arrow-left" />
-      Go back
-    </button>
+    <GoBack name="Invoices list" />
     <template v-if="invoicesStore.currentInvoice">
       <InvoiceActions :invoice="invoicesStore.currentInvoice" />
       <InvoiceCard :invoice="invoicesStore.currentInvoice" />
@@ -30,8 +24,8 @@ import InvoiceCard from "@/components/InvoiceCard.vue";
 import { useRouter, useRoute } from "vue-router";
 import { onMounted } from "vue";
 import { useInvoices } from "@/stores/Invoices";
-import AppIcon from "@/components/AppIcon.vue";
 import PageSlide from "@/components/PageSlide.vue";
+import GoBack from "@/components/GoBack.vue";
 
 const router = useRouter();
 const route = useRoute();

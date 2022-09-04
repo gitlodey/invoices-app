@@ -27,6 +27,7 @@ import AppOverlay from "@/components/AppOverlay.vue";
   margin: 0 auto;
   display: flex;
   flex-direction: column;
+  padding-top: 50px;
 }
 .content--route {
   flex: 1 0 auto;

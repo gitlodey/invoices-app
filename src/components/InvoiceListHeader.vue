@@ -61,4 +61,7 @@ const openNewInvoicePage = () => {
   padding-right: 20px;
   margin-right: 30px;
 }
+.invoice-list-header--filter:focus-visible {
+  outline: none;
+}
 </style>
