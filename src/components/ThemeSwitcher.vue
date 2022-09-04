@@ -1,8 +1,8 @@
 <template>
   <div class="theme-switcher">
-    <img
+    <AppIcon
+      :icon="iconName"
       class="theme-switcher--image"
-      :src="iconSrc"
       :alt="iconAlt"
       @click="toggleTheme"
     />
@@ -11,17 +11,14 @@
 
 <script lang="ts" setup>
 import { ref, computed, onMounted } from "vue";
+import AppIcon from "@/components/AppIcon.vue";
 
 const userTheme = ref(localStorage.getItem("user-theme"));
 
 const isDarkTheme = computed(() => {
   return userTheme.value === "dark-theme";
 });
-const iconSrc = computed(() => {
-  return isDarkTheme.value
-    ? "/src/assets/icon-sun.svg"
-    : "/src/assets/icon-moon.svg";
-});
+const iconName = computed(() => (isDarkTheme.value ? "sun" : "moon"));
 const iconAlt = computed(() => {
   return isDarkTheme.value ? "Change to light theme" : "Change to dark theme";
 });
