@@ -67,6 +67,10 @@ const deleteInvoice = async () => {
   await router.push({
     name: Routes.invoicesList,
   });
+  uiStore.addSuccessNotification({
+    title: `Invoice #${props.invoice.id}`,
+    description: "was successfully deleted",
+  });
 };
 
 const markAsPaid = async () => {

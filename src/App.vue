@@ -27,6 +27,7 @@ import MainPage from "@/views/MainPage.vue";
   --color-coal: #0c0316;
   --color-warning: #ec5757;
   --color-warning-hover: #ff9797;
+  --color-warning-bg: rgba(255, 151, 151, 0.1);
   --column-gap-m: 20px;
   --column-gap-s: 10px;
   --color-light: #f8f8fb;

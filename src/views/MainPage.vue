@@ -5,6 +5,7 @@
       <RouterView class="content--route" />
     </div>
     <AppOverlay />
+    <NotificationContainer />
   </div>
 </template>
 
@@ -12,6 +13,7 @@
 import { RouterView } from "vue-router";
 import PageSidebar from "@/components/PageSidebar.vue";
 import AppOverlay from "@/components/AppOverlay.vue";
+import NotificationContainer from "@/components/NotificationContainer.vue";
 </script>
 
 <style scoped>
