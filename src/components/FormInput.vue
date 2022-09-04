@@ -7,23 +7,42 @@
       {{ label }}
     </div>
     <Field
-      class="form-field--input"
-      :class="{ '__small-padding': smallPadding }"
-      :value="modelValue"
-      @input="$emit('update:modelValue', $event.target.value)"
-      :type="type"
+      v-model="value"
       :name="name"
       :rules="rules"
-    />
-    <ErrorMessage :name="name" />
+      v-slot="{ field }"
+    >
+      <input
+        v-bind="field"
+        class="form-field--input"
+        :class="{ '__small-padding': smallPadding }"
+        :type="type"
+        :min="min"
+        :max="max"
+        @change="onChange"
+      />
+      <ErrorMessage
+        class="form-field--error text-11-400"
+        :name="name"
+      />
+    </Field>
   </div>
 </template>
 
 <script lang="ts" setup>
+import { ref, watch } from "vue";
 import { Field, ErrorMessage } from "vee-validate/dist/vee-validate";
 
 const props = defineProps({
   modelValue: {
+    type: [String, Number],
+    default: undefined,
+  },
+  min: {
+    type: [String, Number],
+    default: undefined,
+  },
+  max: {
     type: [String, Number],
     default: undefined,
   },
@@ -48,7 +67,19 @@ const props = defineProps({
     default: undefined,
   },
 });
-defineEmits(["update:modelValue"]);
+const emits = defineEmits(["update:modelValue"]);
+
+const value = ref(props.modelValue);
+
+const onChange = (event: Event) => {
+  const target = event.target as HTMLInputElement;
+  emits("update:modelValue", target.value);
+};
+
+watch(
+  () => props.modelValue,
+  (newValue) => (value.value = newValue),
+);
 </script>
 
 <style>
@@ -71,5 +102,10 @@ defineEmits(["update:modelValue"]);
 }
 .form-field--label {
   margin-bottom: 10px;
+}
+
+.form-field--error {
+  color: var(--color-warning);
+  margin-top: 5px;
 }
 </style>

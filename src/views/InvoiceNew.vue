@@ -1,7 +1,10 @@
 <template>
   <div class="invoice-new">
     <div class="text-32-700">New invoice</div>
-    <InvoiceForm ref="form">
+    <InvoiceForm
+      ref="form"
+      @submit="addInvoice"
+    >
       <div class="form-buttons">
         <AppButton
           text="Discard"
@@ -34,6 +37,7 @@ const form = ref<InstanceType<typeof InvoiceForm> | null>(InvoiceForm);
 const saveDraft = () => {
   form.value?.saveAsDraft();
 };
+const addInvoice = (form) => {};
 </script>
 
 <style scoped>

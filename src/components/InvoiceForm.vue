@@ -1,7 +1,7 @@
 <template>
   <Form
     class="invoice-form"
-    @submit="$emit('submit')"
+    @submit="$emit('submit', form)"
   >
     <div class="invoice-form--section-header">Bill from</div>
     <div class="invoice-form--row-1-item">
@@ -80,18 +80,21 @@
     </div>
     <div class="invoice-form--row-2-item">
       <FormInput
-        v-model="form.paymentDue"
+        :model-value="form.paymentDue"
         name="paymentDue"
         type="date"
         rules="required"
         label="Issue Date"
+        :min="minDate"
+        @update:modelValue="updatePaymentDue"
       />
       <FormSelect
-        v-model.number="form.paymentTerms"
+        :model-value="form.paymentTerms"
         name="paymentTerms"
         rules="required"
         label="Payment Terms"
-        :options="[1, 7, 14, 30]"
+        :options="paymentTermsOptions"
+        @update:modelValue="updatePaymentTerms"
       />
     </div>
     <div class="invoice-form--row-1-item">
@@ -121,19 +124,28 @@ import { defineRule, Form } from "vee-validate";
 import { required } from "@vee-validate/rules";
 import FormInput from "@/components/FormInput.vue";
 import FormSelect from "@/components/FormSelect.vue";
-import { onMounted, reactive } from "vue";
+import { computed, reactive } from "vue";
 import type Invoice from "@/types/Invoice";
 import InvoiceStatuses from "@/enums/InvoiceStatuses";
 import InvoiceItems from "@/components/InvoiceItems.vue";
 import AppButton from "@/components/AppButton.vue";
+import { useInvoiceId } from "@/composables/useInvoiceId";
+import { useInvoices } from "@/stores/Invoices";
+import {
+  useCurrentDate,
+  useAddDays,
+  useDifference,
+} from "@/composables/useDayJs";
+
+const invoiceStore = useInvoices();
 
 const props = defineProps<{
   invoice?: Invoice;
 }>();
-const form = reactive<Invoice>({
-  id: props.invoice?.id || "",
-  createdAt: "",
-  paymentDue: "",
+let form = reactive<Invoice>({
+  id: useInvoiceId(),
+  createdAt: useCurrentDate(),
+  paymentDue: useAddDays(useCurrentDate(), 1),
   description: "",
   paymentTerms: 1,
   clientName: "",
@@ -157,8 +169,35 @@ const form = reactive<Invoice>({
 defineRule("required", required);
 
 if (props.invoice) {
-  Object.assign(form, props.invoice);
+  Object.assign(form, JSON.parse(JSON.stringify(props.invoice)));
 }
+
+const paymentTermsOptions = computed(() => {
+  return [...new Set([1, 7, 14, 30, form.paymentTerms])]
+    .sort((a, b) => a - b)
+    .map((i) => {
+      return {
+        label: `Net ${i} ${i > 1 ? "Days" : "Day"}`,
+        value: i,
+      };
+    });
+});
+
+const updatePaymentTerms = (days: string) => {
+  form.paymentTerms = Number(days);
+  form.paymentDue = useAddDays(form.createdAt, form.paymentTerms);
+};
+
+const updatePaymentDue = (date: string) => {
+  form.paymentDue = date;
+  if (date && useDifference(form.createdAt, date) > 0) {
+    form.paymentTerms = useDifference(form.createdAt, date);
+  }
+};
+
+const minDate = computed(() => {
+  return useAddDays(form.createdAt, 1);
+});
 
 const addNewItem = () => {
   form.items.push({
@@ -169,8 +208,9 @@ const addNewItem = () => {
   });
 };
 
-const saveAsDraft = () => {};
-
+const saveAsDraft = async () => {
+  await invoiceStore.addInvoice(form);
+};
 defineExpose({
   saveAsDraft,
 });

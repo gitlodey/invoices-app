@@ -7,28 +7,37 @@
       {{ label }}
     </div>
     <Field
-      class="form-field--input"
+      v-model="value"
       :name="name"
       :rules="rules"
-      as="select"
-      :value="modelValue"
-      @change="$emit('update:modelValue', $event.target.value)"
+      v-slot="{ field }"
     >
-      <option
-        v-for="option in options"
-        :key="option"
-        :value="option"
+      <select
+        v-bind="field"
+        class="form-field--input"
+        :name="name"
+        @change="onChange"
       >
-        {{ option }}
-      </option>
+        <option
+          v-for="option in options"
+          :key="option.value"
+          :value="option.value"
+          :selected="option.value === value"
+        >
+          {{ option.label }}
+        </option>
+      </select>
     </Field>
-    <ErrorMessage :name="name" />
+    <ErrorMessage
+      class="form-field--error text-11-400"
+      :name="name"
+    />
   </div>
 </template>
 
 <script lang="ts" setup>
 import { Field, ErrorMessage } from "vee-validate";
-import { defineProps, defineEmits } from "vue";
+import { defineProps, defineEmits, watch, ref } from "vue";
 
 const props = defineProps({
   modelValue: {
@@ -61,8 +70,15 @@ const emits = defineEmits(["change", "update:modelValue"]);
 
 const onChange = (event: InputEvent) => {
   const target = event.target as HTMLSelectElement;
-  emits("change", target.value);
+  emits("update:modelValue", target.value);
 };
+
+const value = ref(props.modelValue);
+
+watch(
+  () => props.modelValue,
+  (newValue) => (value.value = newValue),
+);
 </script>
 
 <style scoped>
