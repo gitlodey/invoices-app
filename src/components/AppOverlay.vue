@@ -13,7 +13,7 @@ import { useUi } from "@/stores/ui";
 
 const uiStore = useUi();
 
-const onClick = (event: PointerEvent) => {
+const onClick = (event: MouseEvent) => {
   if (event.currentTarget === event.target) {
     uiStore.hideOverlay();
   }

@@ -39,32 +39,19 @@
 import { Field, ErrorMessage } from "vee-validate";
 import { watch, ref } from "vue";
 
-const props = defineProps({
-  modelValue: {
-    type: [String, Number],
-    default: undefined,
-  },
-  options: {
-    type: Array,
-    default: undefined,
-  },
-  type: {
-    type: String,
-    default: "text",
-  },
-  name: {
-    type: String,
-    required: true,
-  },
-  label: {
-    type: String,
-    default: undefined,
-  },
-  rules: {
-    type: String,
-    default: undefined,
-  },
-});
+interface ISelectOption {
+  label: string | number;
+  value: string | number;
+}
+
+const props = defineProps<{
+  modelValue: string | number;
+  options: ISelectOption[];
+  type?: string;
+  name: string;
+  label?: string;
+  rules?: string;
+}>();
 
 const emits = defineEmits(["change", "update:modelValue"]);
 

@@ -1,7 +1,7 @@
 <template>
   <div class="empty-page">
     <img
-      src="src/assets/illustration-empty.svg"
+      src="@/assets/illustration-empty.svg"
       alt="Empty page"
     />
     <slot></slot>

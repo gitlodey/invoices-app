@@ -23,7 +23,6 @@
 import { useCapitalize } from "@/composables/useCapitalize";
 import InvoiceStatuses from "@/enums/InvoiceStatuses";
 import type IInvoiceStatuses from "@/enums/InvoiceStatuses";
-import { defineEmits } from "vue";
 
 defineProps<{
   selectedFilter?: IInvoiceStatuses;

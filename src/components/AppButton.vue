@@ -27,7 +27,7 @@ const props = defineProps<{
   wide?: boolean;
   disabled?: boolean;
   iconStyle?: Partial<CSSStyleDeclaration>;
-  type?: string;
+  type?: "button" | "submit" | "reset" | undefined;
 }>();
 
 const emits = defineEmits(["click"]);

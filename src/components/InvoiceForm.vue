@@ -114,7 +114,7 @@
     <AppButton
       text="Add new item"
       icon="plus"
-      color="dark"
+      :color="ButtonColors.dark"
       :wide="true"
       :icon-style="{ width: '8px', height: '8px' }"
       @click="addNewItem"
@@ -135,6 +135,7 @@ import {
   useCurrentDate,
   useDifference,
 } from "@/composables/useDayJs";
+import ButtonColors from "@/enums/ButtonColors";
 import InvoiceStatuses from "@/enums/InvoiceStatuses";
 import { useInvoices } from "@/stores/Invoices";
 import { useUi } from "@/stores/ui";

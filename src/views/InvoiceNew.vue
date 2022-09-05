@@ -9,12 +9,12 @@
         <AppButton
           text="Discard"
           @click="goBack"
-          color="secondary"
+          :color="ButtonColors.secondary"
         />
         <div class="form-buttons-right">
           <AppButton
             text="Save as Draft"
-            color="dark"
+            :color="ButtonColors.dark"
             @click="saveDraft"
           />
           <AppButton
@@ -29,7 +29,8 @@
 
 <script lang="ts" setup>
 import AppButton from "@/components/AppButton.vue";
-import InvoiceForm from "@/components/InvoiceForm.vue";
+import type InvoiceForm from "@/components/InvoiceForm.vue";
+import ButtonColors from "@/enums/ButtonColors";
 import InvoiceStatuses from "@/enums/InvoiceStatuses";
 import Routes from "@/enums/Routes";
 import { useInvoices } from "@/stores/Invoices";
@@ -42,7 +43,7 @@ const router = useRouter();
 const invoicesStore = useInvoices();
 const uiStore = useUi();
 
-const form = ref<InstanceType<typeof InvoiceForm> | null>(InvoiceForm);
+const form = ref<InstanceType<typeof InvoiceForm> | null>();
 
 const saveDraft = () => {
   form.value?.saveAsDraft();

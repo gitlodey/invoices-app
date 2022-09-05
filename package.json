@@ -8,7 +8,7 @@
     "preview": "vite preview --port 4173",
     "build-only": "vite build",
     "type-check": "vue-tsc --noEmit",
-    "lint": "eslint invoice-vue-hard-rgachh --ext .vue,.js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts --fix --ignore-path .gitignore",
+    "lint": "eslint ./src --ext .vue,.js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts --fix --ignore-path .gitignore",
     "format": "prettier .  --write"
   },
   "dependencies": {
@@ -34,5 +34,8 @@
     "typescript": "~4.7.4",
     "vite": "^3.0.4",
     "vue-tsc": "^0.39.5"
+  },
+  "engines": {
+    "node": ">=16"
   }
 }

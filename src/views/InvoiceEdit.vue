@@ -12,7 +12,7 @@
         <AppButton
           text="Cancel"
           @click="goBack"
-          color="dark"
+          :color="ButtonColors.dark"
         />
         <AppButton
           text="Save changes"
@@ -26,6 +26,7 @@
 <script lang="ts" setup>
 import AppButton from "@/components/AppButton.vue";
 import InvoiceForm from "@/components/InvoiceForm.vue";
+import ButtonColors from "@/enums/ButtonColors";
 import InvoiceStatuses from "@/enums/InvoiceStatuses";
 import Routes from "@/enums/Routes";
 import { useInvoices } from "@/stores/Invoices";

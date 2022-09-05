@@ -10,12 +10,12 @@
     <div class="modal-confirmation--buttons">
       <AppButton
         text="Cancel"
-        color="dark"
+        :color="ButtonColors.dark"
         @click="cancel"
       />
       <AppButton
         :text="confirmButtonText"
-        color="warning"
+        :color="ButtonColors.warning"
         @click="confirm"
       />
     </div>
@@ -24,6 +24,7 @@
 
 <script lang="ts" setup>
 import AppButton from "@/components/AppButton.vue";
+import ButtonColors from "@/enums/ButtonColors";
 import { useUi } from "@/stores/ui";
 import { computed } from "vue";
 

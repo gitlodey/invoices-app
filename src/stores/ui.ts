@@ -1,6 +1,6 @@
 import ModalConfirmation from "@/components/ModalConfirmation.vue";
 import { defineStore } from "pinia";
-import type { VueElement } from "vue";
+import type { defineComponent } from "vue";
 
 export interface INotification {
   type: string;
@@ -12,7 +12,7 @@ export interface INotification {
 
 interface IUiStore {
   overlay: boolean;
-  overlayComponent?: VueElement;
+  overlayComponent?: ReturnType<typeof defineComponent>;
   confirmationTitle: string;
   confirmationDescription: string;
   confirmationHandler?: (...args: unknown[]) => unknown;

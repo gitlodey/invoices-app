@@ -7,12 +7,12 @@
     <div class="invoice-actions--right">
       <AppButton
         text="Edit"
-        color="dark"
+        :color="ButtonColors.dark"
         @click="editInvoice"
       />
       <AppButton
         text="Delete"
-        color="warning"
+        :color="ButtonColors.warning"
         @click="showConfirmation"
       />
       <AppButton
@@ -27,6 +27,7 @@
 <script lang="ts" setup>
 import InvoiceStatus from "@/components/InvoiceStatus.vue";
 import AppButton from "@/components/AppButton.vue";
+import ButtonColors from "@/enums/ButtonColors";
 import InvoiceStatuses from "@/enums/InvoiceStatuses";
 import Routes from "@/enums/Routes";
 import { useInvoices } from "@/stores/Invoices";
