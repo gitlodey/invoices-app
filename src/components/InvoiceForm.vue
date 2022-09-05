@@ -69,7 +69,7 @@
         v-model="form.clientAddress.postCode"
         name="clientAddressPostCode"
         rules="required"
-        label="Postcode"
+        label="Post Code"
       />
       <FormInput
         v-model="form.clientAddress.country"
@@ -115,6 +115,7 @@
       icon="plus"
       color="dark"
       :wide="true"
+      :icon-style="{ width: '8px', height: '8px' }"
       @click="addNewItem"
     />
 
@@ -267,7 +268,7 @@ defineExpose({
 .invoice-form--row-3-item {
   display: grid;
   grid-column-gap: 20px;
-  margin-bottom: 25px;
+  margin-bottom: 23px;
 }
 .invoice-form--row-1-item {
   grid-template-columns: 1fr;
@@ -282,6 +283,6 @@ defineExpose({
 .invoice-form--section-header {
   font-weight: bold;
   color: var(--color-secondary);
-  margin: 50px 0 30px 0;
+  margin: 45px 0 25px 0;
 }
 </style>

@@ -4,8 +4,7 @@
       class="invoice-list-item--id"
       @click="goToInvoicePage"
     >
-      <span class="invoice-list-item--id-prefix">#</span>
-      {{ invoice.id }}
+      <span class="invoice-list-item--id-prefix">#</span>{{ invoice.id }}
     </div>
     <div class="invoice-list-item--due">Due {{ invoice.paymentDue }}</div>
     <div class="invoice-list-item--name">{{ invoice.clientName }}</div>
@@ -56,7 +55,7 @@ const goToInvoicePage = () => {
   background-color: var(--color-invoice-item-bg);
   align-items: center;
   border-radius: 10px;
-  padding: 16px 30px;
+  padding: 15px 33px;
   transition: 0.3s ease background-color;
 }
 .invoice-list-item--id {
@@ -72,7 +71,7 @@ const goToInvoicePage = () => {
   font-weight: bold;
 }
 .invoice-list-item--id-prefix {
-  color: var(--color-main);
+  color: var(--color-accent);
 }
 .invoice-list-item--total {
   text-align: right;

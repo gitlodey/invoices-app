@@ -97,12 +97,15 @@ watch(
   padding: 0 3px;
   text-align: center;
 }
-.form-field--input:focus-visible {
+.form-field:hover .form-field--input {
+  border-color: var(--color-accent);
+}
+.form-field .form-field--input:focus-visible {
   border-color: var(--color-main);
   outline: none;
 }
 .form-field--label {
-  margin-bottom: 10px;
+  margin-bottom: 8px;
 }
 
 .form-field--error {

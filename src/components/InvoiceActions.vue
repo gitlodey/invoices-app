@@ -89,7 +89,7 @@ const markAsPaid = async () => {
   align-items: center;
   background-color: var(--color-invoice-item-bg);
   padding: 20px 30px;
-  border-radius: 20px;
+  border-radius: 10px;
 }
 .invoice-actions--left,
 .invoice-actions--right {

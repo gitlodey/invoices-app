@@ -50,7 +50,7 @@ const onInvoiceFormClose = () => {
 
 <style scoped>
 .go-back {
-  margin-bottom: 30px;
+  margin-bottom: 13px;
 }
 .invoice-page .invoice-actions {
   margin-bottom: 25px;

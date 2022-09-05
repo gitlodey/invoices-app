@@ -20,17 +20,17 @@
       <div class="invoice-card--dates invoice-card--cell">
         <div>
           <div class="invoice-card--block-title">Invoice Date</div>
-          <div class="text-20-700">{{ invoice.createdAt }}</div>
+          <div class="text-18-700">{{ invoice.createdAt }}</div>
         </div>
 
         <div>
           <div class="invoice-card--block-title">Payment due</div>
-          <div class="text-20-700">{{ invoice.paymentDue }}</div>
+          <div class="text-18-700">{{ invoice.paymentDue }}</div>
         </div>
       </div>
       <div class="invoice-card--cell">
         <div class="invoice-card--block-title">Bill to</div>
-        <div class="text-20-700">{{ invoice.clientName }}</div>
+        <div class="text-18-700">{{ invoice.clientName }}</div>
 
         <div v-for="key in invoice.clientAddress">
           {{ key }}
@@ -38,7 +38,7 @@
       </div>
       <div class="invoice-card--cell">
         <div class="invoice-card--block-title">Send to</div>
-        <div class="text-20-700">{{ invoice.clientEmail }}</div>
+        <div class="text-18-700">{{ invoice.clientEmail }}</div>
       </div>
     </div>
 
@@ -66,7 +66,7 @@ const total = computed(() => useFormatNumber(props.invoice.total));
 .invoice-card {
   background-color: var(--color-invoice-item-bg);
   padding: 50px;
-  border-radius: 20px;
+  border-radius: 10px;
 }
 .invoice-card--id-sign {
   color: var(--color-text-secondary);
@@ -77,7 +77,7 @@ const total = computed(() => useFormatNumber(props.invoice.total));
 .invoice-card--row {
   display: grid;
   grid-column-gap: 20px;
-  margin-bottom: 30px;
+  margin-bottom: 20px;
 }
 .invoice-card--row.__two-col {
   grid-template-columns: 1fr 1fr;
@@ -90,11 +90,11 @@ const total = computed(() => useFormatNumber(props.invoice.total));
 }
 .invoice-card--cell > div,
 .invoice-card--sender-address > div {
-  margin-bottom: 10px;
+  margin-bottom: 6px;
 }
 .invoice-card--block-title {
   font-size: 16px;
-  margin-bottom: 15px;
+  margin-bottom: 10px;
 }
 .invoice-card--dates {
   display: flex;

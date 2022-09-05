@@ -1,6 +1,6 @@
 <template>
   <div class="invoice-items">
-    <div class="invoice-items--title text-16-700">Item List</div>
+    <div class="invoice-items--title text-20-700">Item List</div>
 
     <div class="item-list-header">
       <div>Item Name</div>
@@ -33,7 +33,7 @@ const props = defineProps<{
   display: grid;
   grid-template-columns: 4fr 1fr 2fr 2fr;
   grid-column-gap: 20px;
-  margin-bottom: 16px;
+  margin-bottom: 18px;
 }
 .invoice-items--title {
   margin: 30px 0 20px 0;

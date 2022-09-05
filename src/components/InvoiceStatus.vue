@@ -43,9 +43,9 @@ const statusString = computed(() => useCapitalize(props.status));
   color: var(--color-draft);
 }
 .invoice-status--dot {
-  width: 10px;
-  height: 10px;
-  border-radius: 10px;
+  width: 8px;
+  height: 8px;
+  border-radius: 8px;
   margin-right: 5px;
 }
 

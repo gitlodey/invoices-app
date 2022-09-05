@@ -1,6 +1,6 @@
 <template>
   <div class="modal-confirmation">
-    <div class="modal-confirmation--title text-32-700">
+    <div class="modal-confirmation--title text-30-700">
       {{ uiStore.confirmationTitle }}
     </div>
     <div class="modal-confirmation--description">
@@ -47,20 +47,20 @@ const confirm = () => {
 <style scoped>
 .modal-confirmation {
   box-sizing: border-box;
-  width: 500px;
+  width: 480px;
   max-width: 90%;
   padding: 50px;
-  border-radius: 20px;
+  border-radius: 10px;
   background-color: var(--color-invoice-item-bg);
 }
 .modal-confirmation--title {
-  margin-bottom: 30px;
+  margin-bottom: 10px;
 }
 .modal-confirmation--description {
   line-height: 1.5;
 }
 .modal-confirmation--buttons {
-  margin-top: 30px;
+  margin-top: 20px;
   display: flex;
   justify-content: flex-end;
 }

@@ -1,6 +1,8 @@
 <template>
   <div class="invoice-edit">
-    <h2>Edit invoice</h2>
+    <div class="invoice-edit--title text-28-700">
+      Edit <span>#</span>{{ route.params.invoiceId }}
+    </div>
     <InvoiceForm
       v-if="invoicesStore.currentInvoice"
       :invoice="invoicesStore.currentInvoice"
@@ -72,10 +74,8 @@ const goBack = () => {
 </script>
 
 <style scoped>
-.form-buttons {
-  display: flex;
-  justify-content: flex-end;
-  padding: 35px 0;
+.invoice-edit--title > span {
+  color: var(--color-text-secondary);
 }
 .form-buttons .app-button:not(:last-child) {
   margin-right: 10px;

@@ -24,12 +24,12 @@ import NotificationContainer from "@/components/NotificationContainer.vue";
   position: relative;
 }
 .content {
-  width: 1020px;
-  max-width: 100%;
+  width: 900px;
+  max-width: calc(90% - var(--app-sidebar-width));
   margin: 0 auto;
   display: flex;
   flex-direction: column;
-  padding-top: 50px;
+  padding-top: 65px;
 }
 .content--route {
   flex: 1 0 auto;

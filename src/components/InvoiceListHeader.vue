@@ -1,15 +1,17 @@
 <template>
   <div class="invoice-list-header">
     <div class="invoice-list-header--left">
-      <h1>Invoices</h1>
-      <p v-if="quantity && quantity > 0">
-        There are {{ quantity }} total invoices
-      </p>
-      <p v-else>No invoices</p>
+      <div class="invoice-list-header--title text-38-700">Invoices</div>
+      <div class="text-15-400">
+        <span v-if="quantity && quantity > 0">
+          There are {{ quantity }} total invoices
+        </span>
+        <span v-else> No invoices </span>
+      </div>
     </div>
 
     <InvoicesFilter
-      class="invoice-list-header--filter text-16-700"
+      class="invoice-list-header--filter text-13-700"
       :selected-filter="selectedFilter"
       @change="$emit('filter', $event)"
     />
@@ -50,6 +52,7 @@ const openNewInvoicePage = () => {
 .invoice-list-header {
   display: flex;
   align-items: center;
+  margin-bottom: 65px;
 }
 .invoice-list-header--left {
   flex: 1 0 auto;
@@ -68,5 +71,8 @@ const openNewInvoicePage = () => {
 }
 .invoice-list-header--filter:focus-visible {
   outline: none;
+}
+.invoice-list-header--title {
+  margin-bottom: 5px;
 }
 </style>

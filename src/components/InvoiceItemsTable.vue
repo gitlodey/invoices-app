@@ -8,15 +8,15 @@
         <div>Total</div>
       </div>
       <div
-        class="invoice-items-table--item text-16-700"
+        class="invoice-items-table--item text-14-700"
         v-for="item in items"
         :key="item.name"
       >
         <div>{{ item.name }}</div>
         <div class="invoice-items-table--quantity">{{ item.quantity }}</div>
-        <div class="invoice-items-table--price">{{ item.price }}</div>
+        <div class="invoice-items-table--price">£ {{ item.price }}</div>
         <div class="invoice-items-table--total">
-          {{ useFormatNumber(item.total) }}
+          £ {{ useFormatNumber(item.total) }}
         </div>
       </div>
     </div>
@@ -39,7 +39,7 @@ const props = defineProps<{
 
 <style scoped>
 .invoice-items-table {
-  background-color: var(--color-dark-secondary);
+  background-color: var(--color-bg);
   border-radius: 10px;
 }
 .invoice-items-table--header,
@@ -66,9 +66,11 @@ const props = defineProps<{
   color: #fff;
   border-radius: 0 0 10px 10px;
 }
-.invoice-items-table--content,
+.invoice-items-table--content {
+  padding: 33px;
+}
 .invoice-items-table--footer {
-  padding: 30px;
+  padding: 20px 33px;
 }
 .invoice-items-table--header {
   margin-bottom: 30px;

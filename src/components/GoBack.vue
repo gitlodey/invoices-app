@@ -4,7 +4,7 @@
     @click="onClick"
   >
     <AppIcon icon="arrow-left" />
-    <p class="text-16-700">Go back</p>
+    <p class="text-13-700">Go back</p>
   </button>
 </template>
 
@@ -46,6 +46,6 @@ const onClick = () => {
 }
 
 .go-back .app-icon {
-  margin-right: 20px;
+  margin-right: 23px;
 }
 </style>
