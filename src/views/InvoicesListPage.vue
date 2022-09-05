@@ -5,13 +5,14 @@
       :selected-filter="selectedFilter"
       @filter="onFilter"
     />
-    <InvoiceListItem
-      v-if="invoicesStore.invoices && invoicesStore.invoices.length"
-      v-for="invoice in invoicesStore.invoices"
-      class="invoice-item"
-      :invoice="invoice"
-      :key="invoice.id"
-    />
+    <template v-if="invoicesStore.invoices && invoicesStore.invoices.length">
+      <InvoiceListItem
+        v-for="invoice in invoicesStore.invoices"
+        class="invoice-item"
+        :invoice="invoice"
+        :key="invoice.id"
+      />
+    </template>
     <EmptyPage
       v-else
       class="no-invoices"

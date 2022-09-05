@@ -37,7 +37,7 @@
 
 <script lang="ts" setup>
 import { Field, ErrorMessage } from "vee-validate";
-import { defineProps, defineEmits, watch, ref } from "vue";
+import { watch, ref } from "vue";
 
 const props = defineProps({
   modelValue: {

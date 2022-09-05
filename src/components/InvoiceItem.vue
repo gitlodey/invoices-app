@@ -2,14 +2,15 @@
   <div class="invoice-item">
     <FormInput
       :name="`${item.id}--itemName`"
-      v-model="item.name"
+      :model-value="item.name"
+      @update:modelValue="onNameUpdated"
       label="Item name"
       rules="required"
       :hide-label="true"
     />
     <FormInput
       :name="`${item.id}--itemQuantity`"
-      :model-value.number="item.quantity"
+      :model-value="item.quantity"
       @update:modelValue="onQuantityUpdated"
       type="number"
       rules="required|minValue:1"
@@ -20,7 +21,7 @@
     />
     <FormInput
       :name="`${item.id}--itemPrice`"
-      :model-value.number="item.price"
+      :model-value="item.price"
       @update:modelValue="onPriceUpdated"
       type="number"
       rules="required|minValue:0.01"
@@ -50,15 +51,33 @@ const props = defineProps<{
   item: IInvoiceItem;
 }>();
 
+const emits = defineEmits(["update", "delete"]);
+
 const total = computed(() => useFormatNumber(props.item.total));
 
-const onQuantityUpdated = (quantity: number) => {
-  props.item.quantity = quantity;
-  props.item.total = quantity * props.item.price;
+const onQuantityUpdated = (quantity: string) => {
+  emits("update", {
+    quantity: Number(quantity),
+    total: Number(quantity) * props.item.price,
+    price: props.item.price,
+    name: props.item.name,
+  });
 };
-const onPriceUpdated = (price: number) => {
-  props.item.price = price;
-  props.item.total = price * props.item.quantity;
+const onPriceUpdated = (price: string) => {
+  emits("update", {
+    price: Number(price),
+    total: Number(price) * props.item.quantity,
+    quantity: props.item.quantity,
+    name: props.item.name,
+  });
+};
+const onNameUpdated = (name: string) => {
+  emits("update", {
+    name,
+    price: props.item.price,
+    total: props.item.total,
+    quantity: props.item.quantity,
+  });
 };
 </script>
 

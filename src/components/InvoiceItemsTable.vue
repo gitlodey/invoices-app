@@ -31,7 +31,7 @@
 import { useFormatNumber } from "@/composables/useFormatNumber";
 import type { IInvoiceItem } from "@/types/Invoice";
 
-const props = defineProps<{
+defineProps<{
   items: IInvoiceItem[];
   total: number;
 }>();

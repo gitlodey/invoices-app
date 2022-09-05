@@ -108,7 +108,8 @@
 
     <InvoiceItems
       :items="itemsWithIds"
-      @delete="onDelete"
+      @delete="onDeleteItem"
+      @update="onUpdateItems"
     />
     <AppButton
       text="Add new item"
@@ -137,6 +138,7 @@ import {
 import InvoiceStatuses from "@/enums/InvoiceStatuses";
 import { useInvoices } from "@/stores/Invoices";
 import { useUi } from "@/stores/ui";
+import type { IInvoiceItem } from "@/types/Invoice";
 import type Invoice from "@/types/Invoice";
 import { configure, defineRule, Form } from "vee-validate";
 import { email, min_value, required } from "@vee-validate/rules";
@@ -151,10 +153,10 @@ const router = useRouter();
 
 const props = defineProps<{
   invoice?: Invoice;
-  onSubmit?: Function;
+  onSubmit?: (form: Invoice) => Promise<void>;
 }>();
 
-let form = reactive<Invoice>({
+const form = reactive<Invoice>({
   id: useInvoiceId(),
   createdAt: useCurrentDate(),
   paymentDue: useAddDays(useCurrentDate(), 1),
@@ -234,10 +236,19 @@ const addNewItem = () => {
     total: 0,
   });
 };
-const onDelete = (index: number) => {
+const onDeleteItem = (index: number) => {
   if (index > -1) {
     form.items.splice(index, 1);
   }
+};
+const onUpdateItems = ({
+  index,
+  data,
+}: {
+  index: number;
+  data: IInvoiceItem;
+}) => {
+  Object.assign(form.items[index], data);
 };
 const updateInvoiceTotal = () => {
   form.total = form.items.reduce((total, item) => {

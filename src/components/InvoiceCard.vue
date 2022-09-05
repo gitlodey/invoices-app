@@ -10,7 +10,10 @@
       <div
         class="invoice-card--sender-address invoice-card--cell __align-right"
       >
-        <div v-for="key in invoice.senderAddress">
+        <div
+          v-for="(key, index) in invoice.senderAddress"
+          :key="index"
+        >
           {{ key }}
         </div>
       </div>
@@ -32,7 +35,10 @@
         <div class="invoice-card--block-title">Bill to</div>
         <div class="text-18-700">{{ invoice.clientName }}</div>
 
-        <div v-for="key in invoice.clientAddress">
+        <div
+          v-for="(key, index) in invoice.clientAddress"
+          :key="index"
+        >
           {{ key }}
         </div>
       </div>

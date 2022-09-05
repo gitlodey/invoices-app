@@ -14,6 +14,7 @@
         :item="item"
         :key="item.id"
         @delete="$emit('delete', items.indexOf(item))"
+        @update="$emit('update', { data: $event, index: items.indexOf(item) })"
       />
     </div>
   </div>
@@ -23,7 +24,7 @@
 import InvoiceItem from "@/components/InvoiceItem.vue";
 import type { IInvoiceItem } from "@/types/Invoice";
 
-const props = defineProps<{
+defineProps<{
   items: IInvoiceItem[];
 }>();
 </script>

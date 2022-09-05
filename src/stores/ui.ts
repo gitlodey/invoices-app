@@ -15,7 +15,7 @@ interface IUiStore {
   overlayComponent?: VueElement;
   confirmationTitle: string;
   confirmationDescription: string;
-  confirmationHandler?: Function;
+  confirmationHandler?: (...args: unknown[]) => unknown;
   confirmButtonText?: string;
   notifications: INotification[];
 }
@@ -40,7 +40,7 @@ export const useUi = defineStore("ui", {
     }: {
       title: string;
       description: string;
-      handler?: Function;
+      handler?: (...args: unknown[]) => unknown;
       confirmButtonText?: string;
     }) {
       this.overlay = true;

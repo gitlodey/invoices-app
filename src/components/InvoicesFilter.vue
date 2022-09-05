@@ -25,7 +25,7 @@ import InvoiceStatuses from "@/enums/InvoiceStatuses";
 import type IInvoiceStatuses from "@/enums/InvoiceStatuses";
 import { defineEmits } from "vue";
 
-const props = defineProps<{
+defineProps<{
   selectedFilter?: IInvoiceStatuses;
 }>();
 
