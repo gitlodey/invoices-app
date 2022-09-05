@@ -46,7 +46,7 @@
       <FormInput
         v-model="form.clientEmail"
         name="clientEmail"
-        rules="required"
+        rules="required|email"
         label="Client's Email"
       />
     </div>
@@ -124,8 +124,8 @@
 </template>
 
 <script lang="ts" setup>
-import { defineRule, Form } from "vee-validate";
-import { required } from "@vee-validate/rules";
+import { configure, defineRule, Form } from "vee-validate";
+import { required, email, min_value } from "@vee-validate/rules";
 import FormInput from "@/components/FormInput.vue";
 import FormSelect from "@/components/FormSelect.vue";
 import { computed, reactive } from "vue";
@@ -143,6 +143,7 @@ import {
 } from "@/composables/useDayJs";
 import { useRouter } from "vue-router";
 import Routes from "@/enums/Routes";
+import { localize } from "@vee-validate/i18n";
 
 const invoiceStore = useInvoices();
 const uiStore = useUi();
@@ -152,6 +153,7 @@ const props = defineProps<{
   invoice?: Invoice;
   onSubmit?: Function;
 }>();
+
 let form = reactive<Invoice>({
   id: useInvoiceId(),
   createdAt: useCurrentDate(),
@@ -176,7 +178,19 @@ let form = reactive<Invoice>({
   items: [],
   total: 0,
 });
+
 defineRule("required", required);
+defineRule("email", email);
+defineRule("minValue", min_value);
+configure({
+  generateMessage: localize("en", {
+    messages: {
+      required: "{field} is required",
+      email: "{field} is not valid",
+      minValue: "{field} must be greater",
+    },
+  }),
+});
 
 if (props.invoice) {
   Object.assign(form, JSON.parse(JSON.stringify(props.invoice)));
@@ -268,7 +282,7 @@ defineExpose({
 .invoice-form--row-3-item {
   display: grid;
   grid-column-gap: 20px;
-  margin-bottom: 23px;
+  margin-bottom: 5px;
 }
 .invoice-form--row-1-item {
   grid-template-columns: 1fr;

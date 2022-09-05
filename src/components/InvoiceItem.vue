@@ -3,24 +3,30 @@
     <FormInput
       :name="`${item.id}--itemName`"
       v-model="item.name"
+      label="Item name"
       rules="required"
+      :hide-label="true"
     />
     <FormInput
       :name="`${item.id}--itemQuantity`"
       :model-value.number="item.quantity"
       @update:modelValue="onQuantityUpdated"
       type="number"
-      rules="required"
+      rules="required|minValue:1"
+      label="Quantity"
       :small-padding="true"
       :min="1"
+      :hide-label="true"
     />
     <FormInput
       :name="`${item.id}--itemPrice`"
       :model-value.number="item.price"
       @update:modelValue="onPriceUpdated"
       type="number"
-      rules="required"
+      rules="required|minValue:0.01"
+      label="Price"
       :min="0.01"
+      :hide-label="true"
     />
     <div class="invoice-item--total">
       {{ total }}

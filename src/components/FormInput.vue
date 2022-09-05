@@ -2,7 +2,7 @@
   <div class="form-field">
     <div
       class="form-field--label text-12-400"
-      v-if="label"
+      v-if="label && hideLabel !== true"
     >
       {{ label }}
     </div>
@@ -10,6 +10,8 @@
       v-model="value"
       :name="name"
       :rules="rules"
+      :label="label"
+      :minValue="min"
       v-slot="{ field }"
     >
       <input
@@ -66,6 +68,10 @@ const props = defineProps({
     type: Boolean,
     default: undefined,
   },
+  hideLabel: {
+    type: Boolean,
+    default: undefined,
+  },
 });
 const emits = defineEmits(["update:modelValue"]);
 
@@ -83,6 +89,10 @@ watch(
 </script>
 
 <style>
+.form-field {
+  padding-bottom: 20px;
+  position: relative;
+}
 .form-field--input {
   box-sizing: border-box;
   width: 100%;
@@ -109,7 +119,13 @@ watch(
 }
 
 .form-field--error {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  max-height: 20px;
+  line-height: 10px;
+  overflow: hidden;
   color: var(--color-warning);
-  margin-top: 5px;
 }
 </style>
