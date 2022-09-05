@@ -60,12 +60,15 @@ onMounted(async () => {
     : undefined;
   selectedFilter.value = filter;
   await invoicesStore.getInvoices(filter);
-  if (invoicesStore.invoices.length === 0) {
-    // I'm adding mock data to the DB for the first visit just for the page not to be empty.
+
+  // I'm adding mock data to the DB for the first visit just for the page not to be empty.
+  const mockDataAdded = localStorage.getItem("mockDataAdded");
+  if (mockDataAdded !== "true") {
     data.forEach((invoice) => {
       const i = invoice as Invoice;
       invoicesStore.addInvoice(i);
     });
+    localStorage.setItem("mockDataAdded", "true");
   }
 });
 
