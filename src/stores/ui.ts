@@ -1,5 +1,5 @@
-import { defineStore } from "pinia";
 import ModalConfirmation from "@/components/ModalConfirmation.vue";
+import { defineStore } from "pinia";
 import type { VueElement } from "vue";
 
 export interface INotification {

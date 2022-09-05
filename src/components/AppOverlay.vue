@@ -10,6 +10,7 @@
 
 <script lang="ts" setup>
 import { useUi } from "@/stores/ui";
+
 const uiStore = useUi();
 
 const onClick = (event: PointerEvent) => {

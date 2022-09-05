@@ -25,14 +25,14 @@
 </template>
 
 <script lang="ts" setup>
-import type Invoice from "@/types/Invoice";
 import InvoiceStatus from "@/components/InvoiceStatus.vue";
 import AppButton from "@/components/AppButton.vue";
-import { useRouter } from "vue-router";
-import { useUi } from "@/stores/ui";
-import { useInvoices } from "@/stores/Invoices";
 import InvoiceStatuses from "@/enums/InvoiceStatuses";
 import Routes from "@/enums/Routes";
+import { useInvoices } from "@/stores/Invoices";
+import { useUi } from "@/stores/ui";
+import type Invoice from "@/types/Invoice";
+import { useRouter } from "vue-router";
 
 const router = useRouter();
 const uiStore = useUi();
@@ -59,7 +59,6 @@ const showConfirmation = () => {
     handler: deleteInvoice,
   });
 };
-
 const deleteInvoice = async () => {
   await invoicesStore.deleteInvoice(props.invoice);
   await router.push({
@@ -70,7 +69,6 @@ const deleteInvoice = async () => {
     description: "Was successfully deleted",
   });
 };
-
 const markAsPaid = async () => {
   const invoice = { ...props.invoice };
   invoice.status = InvoiceStatuses.paid;

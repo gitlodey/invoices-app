@@ -1,15 +1,14 @@
 <template>
   <div class="empty-page">
-    <img src="src/assets/illustration-empty.svg" />
+    <img
+      src="src/assets/illustration-empty.svg"
+      alt="Empty page"
+    />
     <slot></slot>
   </div>
 </template>
 
-<script>
-export default {
-  name: "EmptyPage",
-};
-</script>
+<script lang="ts" setup></script>
 
 <style scoped>
 .empty-page {

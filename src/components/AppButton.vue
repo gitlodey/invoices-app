@@ -16,9 +16,9 @@
 </template>
 
 <script lang="ts" setup>
-import { computed } from "vue";
 import AppIcon from "@/components/AppIcon.vue";
 import ButtonColors from "@/enums/ButtonColors";
+import { computed } from "vue";
 
 const props = defineProps<{
   text?: string;
@@ -44,7 +44,6 @@ const classList = computed(() => {
     __disabled: props.disabled,
   };
 });
-
 const buttonType = computed(() => props.type || "button");
 
 const onClick = (event: Event) => {

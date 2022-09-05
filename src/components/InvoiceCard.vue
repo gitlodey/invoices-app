@@ -43,6 +43,7 @@
     </div>
 
     <InvoiceItemsTable
+      v-if="invoice.items.length"
       :items="invoice.items"
       :total="total"
     />
@@ -50,11 +51,11 @@
 </template>
 
 <script lang="ts" setup>
-import type Invoice from "@/types/Invoice";
 import InvoiceItemsTable from "@/components/InvoiceItemsTable.vue";
-import { computed } from "vue";
-import { useFormatNumber } from "@/composables/useFormatNumber";
 import { useFormatDate } from "@/composables/useDayJs";
+import { useFormatNumber } from "@/composables/useFormatNumber";
+import type Invoice from "@/types/Invoice";
+import { computed } from "vue";
 
 const props = defineProps<{
   invoice: Invoice;

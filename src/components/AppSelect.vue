@@ -68,17 +68,17 @@ const props = defineProps({
 
 const emits = defineEmits(["change", "update:modelValue"]);
 
-const onChange = (event: InputEvent) => {
-  const target = event.target as HTMLSelectElement;
-  emits("update:modelValue", target.value);
-};
-
 const value = ref(props.modelValue);
 
 watch(
   () => props.modelValue,
   (newValue) => (value.value = newValue),
 );
+
+const onChange = (event: InputEvent) => {
+  const target = event.target as HTMLSelectElement;
+  emits("update:modelValue", target.value);
+};
 </script>
 
 <style scoped>

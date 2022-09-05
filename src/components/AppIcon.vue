@@ -9,7 +9,10 @@
 <script lang="ts" setup>
 import { defineProps, computed } from "vue";
 
-const props = defineProps(["icon", "alt"]);
+const props = defineProps<{
+  icon: string;
+  alt?: string;
+}>();
 
 const src = computed(() => {
   return `/src/assets/icons/icon-${props.icon}.svg`;

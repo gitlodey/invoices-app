@@ -28,15 +28,15 @@
 </template>
 
 <script lang="ts" setup>
-import InvoiceForm from "@/components/InvoiceForm.vue";
 import AppButton from "@/components/AppButton.vue";
-import { ref } from "vue";
+import InvoiceForm from "@/components/InvoiceForm.vue";
+import InvoiceStatuses from "@/enums/InvoiceStatuses";
+import Routes from "@/enums/Routes";
 import { useInvoices } from "@/stores/Invoices";
 import { useUi } from "@/stores/ui";
 import type Invoice from "@/types/Invoice";
+import { ref } from "vue";
 import { useRouter } from "vue-router";
-import Routes from "@/enums/Routes";
-import InvoiceStatuses from "@/enums/InvoiceStatuses";
 
 const router = useRouter();
 const invoicesStore = useInvoices();

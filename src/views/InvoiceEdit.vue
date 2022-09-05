@@ -24,19 +24,18 @@
 </template>
 
 <script lang="ts" setup>
-import InvoiceForm from "@/components/InvoiceForm.vue";
-import { useInvoices } from "@/stores/Invoices";
-import { useRoute, useRouter } from "vue-router";
-import { onMounted } from "vue";
 import AppButton from "@/components/AppButton.vue";
-import type Invoice from "@/types/Invoice";
-import Routes from "@/enums/Routes";
-import { useUi } from "@/stores/ui";
+import InvoiceForm from "@/components/InvoiceForm.vue";
 import InvoiceStatuses from "@/enums/InvoiceStatuses";
+import Routes from "@/enums/Routes";
+import { useInvoices } from "@/stores/Invoices";
+import { useUi } from "@/stores/ui";
+import type Invoice from "@/types/Invoice";
+import { onMounted } from "vue";
+import { useRoute, useRouter } from "vue-router";
 
 const route = useRoute();
 const router = useRouter();
-
 const invoicesStore = useInvoices();
 const uiStore = useUi();
 
@@ -62,7 +61,6 @@ const editInvoice = async (form: Invoice) => {
     goBack();
   }
 };
-
 const goBack = () => {
   router.push({
     name: Routes.invoice,
@@ -76,6 +74,12 @@ const goBack = () => {
 <style scoped>
 .invoice-edit--title > span {
   color: var(--color-text-secondary);
+}
+.form-buttons {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 35px 0;
 }
 .form-buttons .app-button:not(:last-child) {
   margin-right: 10px;

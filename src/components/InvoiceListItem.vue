@@ -21,20 +21,20 @@
 </template>
 
 <script lang="ts" setup>
-import type Invoice from "@/types/Invoice";
-import InvoiceStatus from "@/components/InvoiceStatus.vue";
 import AppIcon from "@/components/AppIcon.vue";
-import { useRouter } from "vue-router";
-import Routes from "@/enums/Routes";
-import { computed } from "vue";
-import { useFormatNumber } from "@/composables/useFormatNumber";
+import InvoiceStatus from "@/components/InvoiceStatus.vue";
 import { useFormatDate } from "@/composables/useDayJs";
+import { useFormatNumber } from "@/composables/useFormatNumber";
+import Routes from "@/enums/Routes";
+import type Invoice from "@/types/Invoice";
+import { computed } from "vue";
+import { useRouter } from "vue-router";
+
+const router = useRouter();
 
 const props = defineProps<{
   invoice: Invoice;
 }>();
-
-const router = useRouter();
 
 const total = computed(() => useFormatNumber(props.invoice.total));
 const paymentDue = computed(() => useFormatDate(props.invoice.paymentDue));

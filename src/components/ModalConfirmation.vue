@@ -23,9 +23,10 @@
 </template>
 
 <script lang="ts" setup>
-import { useUi } from "@/stores/ui";
 import AppButton from "@/components/AppButton.vue";
+import { useUi } from "@/stores/ui";
 import { computed } from "vue";
+
 const uiStore = useUi();
 
 const confirmButtonText = computed(
@@ -35,7 +36,6 @@ const confirmButtonText = computed(
 const cancel = () => {
   uiStore.closeConfirmation();
 };
-
 const confirm = () => {
   if (uiStore.confirmationHandler) {
     uiStore.confirmationHandler();

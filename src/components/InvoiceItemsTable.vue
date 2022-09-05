@@ -28,8 +28,8 @@
 </template>
 
 <script lang="ts" setup>
-import type { IInvoiceItem } from "@/types/Invoice";
 import { useFormatNumber } from "@/composables/useFormatNumber";
+import type { IInvoiceItem } from "@/types/Invoice";
 
 const props = defineProps<{
   items: IInvoiceItem[];

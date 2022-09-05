@@ -124,23 +124,23 @@
 </template>
 
 <script lang="ts" setup>
-import { configure, defineRule, Form } from "vee-validate";
-import { required, email, min_value } from "@vee-validate/rules";
-import FormInput from "@/components/FormInput.vue";
-import FormSelect from "@/components/FormSelect.vue";
-import { computed, reactive } from "vue";
-import type Invoice from "@/types/Invoice";
-import InvoiceStatuses from "@/enums/InvoiceStatuses";
-import InvoiceItems from "@/components/InvoiceItems.vue";
 import AppButton from "@/components/AppButton.vue";
+import InvoiceItems from "@/components/InvoiceItems.vue";
+import FormInput from "@/components/AppInput.vue";
+import FormSelect from "@/components/AppSelect.vue";
 import { useInvoiceId } from "@/composables/useInvoiceId";
-import { useInvoices } from "@/stores/Invoices";
-import { useUi } from "@/stores/ui";
 import {
-  useCurrentDate,
   useAddDays,
+  useCurrentDate,
   useDifference,
 } from "@/composables/useDayJs";
+import InvoiceStatuses from "@/enums/InvoiceStatuses";
+import { useInvoices } from "@/stores/Invoices";
+import { useUi } from "@/stores/ui";
+import type Invoice from "@/types/Invoice";
+import { configure, defineRule, Form } from "vee-validate";
+import { email, min_value, required } from "@vee-validate/rules";
+import { computed, reactive } from "vue";
 import { useRouter } from "vue-router";
 import Routes from "@/enums/Routes";
 import { localize } from "@vee-validate/i18n";
@@ -206,11 +206,9 @@ const paymentTermsOptions = computed(() => {
       };
     });
 });
-
 const minDate = computed(() => {
   return useAddDays(form.createdAt, 1);
 });
-
 const itemsWithIds = computed(() => {
   return form.items.map((item) => {
     item.id = Math.random();
@@ -222,14 +220,12 @@ const updatePaymentTerms = (days: string) => {
   form.paymentTerms = Number(days);
   form.paymentDue = useAddDays(form.createdAt, form.paymentTerms);
 };
-
 const updatePaymentDue = (date: string) => {
   form.paymentDue = date;
   if (date && useDifference(form.createdAt, date) > 0) {
     form.paymentTerms = useDifference(form.createdAt, date);
   }
 };
-
 const addNewItem = () => {
   form.items.push({
     name: "",
@@ -238,21 +234,17 @@ const addNewItem = () => {
     total: 0,
   });
 };
-
 const onDelete = (index: number) => {
   if (index > -1) {
     form.items.splice(index, 1);
   }
 };
-
 const updateInvoiceTotal = () => {
-  const total = form.items.reduce((total, item) => {
+  form.total = form.items.reduce((total, item) => {
     total += item.total;
     return total;
   }, 0);
-  form.total = total;
 };
-
 const saveAsDraft = async () => {
   updateInvoiceTotal();
   await invoiceStore.addInvoice(form);
@@ -264,13 +256,13 @@ const saveAsDraft = async () => {
     description: "Successfully sawed as draft",
   });
 };
-
 const submitHandler = () => {
   updateInvoiceTotal();
   if (props.onSubmit) {
     props.onSubmit(form);
   }
 };
+
 defineExpose({
   saveAsDraft,
 });

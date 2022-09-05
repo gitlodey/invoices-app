@@ -18,19 +18,17 @@
 </template>
 
 <script lang="ts" setup>
+import GoBack from "@/components/GoBack.vue";
 import InvoiceActions from "@/components/InvoiceActions.vue";
 import InvoiceCard from "@/components/InvoiceCard.vue";
-
-import { useRouter, useRoute } from "vue-router";
-import { onMounted } from "vue";
-import { useInvoices } from "@/stores/Invoices";
-import PageSlide from "@/components/PageSlide.vue";
-import GoBack from "@/components/GoBack.vue";
+import PageSlide from "@/views/PageSlide.vue";
 import Routes from "@/enums/Routes";
+import { useInvoices } from "@/stores/Invoices";
+import { onMounted } from "vue";
+import { useRouter, useRoute } from "vue-router";
 
 const router = useRouter();
 const route = useRoute();
-
 const invoicesStore = useInvoices();
 
 onMounted(async () => {

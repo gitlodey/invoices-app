@@ -11,7 +11,10 @@
 <script lang="ts" setup>
 import { defineProps, ref } from "vue";
 
-const props = defineProps(["profile"]);
+const props = defineProps<{
+  profile: { avatar: string };
+}>();
+
 const avatarSrc = ref(props.profile?.avatar || "/src/assets/image-avatar.jpg");
 </script>
 

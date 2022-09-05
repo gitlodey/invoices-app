@@ -40,10 +40,10 @@
 </template>
 
 <script lang="ts" setup>
-import FormInput from "@/components/FormInput.vue";
-import type { IInvoiceItem } from "@/types/Invoice";
 import AppIcon from "@/components/AppIcon.vue";
+import FormInput from "@/components/AppInput.vue";
 import { useFormatNumber } from "@/composables/useFormatNumber";
+import type { IInvoiceItem } from "@/types/Invoice";
 import { computed } from "vue";
 
 const props = defineProps<{

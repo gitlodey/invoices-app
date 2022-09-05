@@ -1,8 +1,8 @@
-import { createRouter, createWebHistory } from "vue-router";
+import InvoiceEdit from "@/views/InvoiceEdit.vue";
 import InvoicesListPage from "@/views/InvoicesListPage.vue";
 import InvoiceNew from "@/views/InvoiceNew.vue";
-import InvoiceEdit from "@/views/InvoiceEdit.vue";
 import InvoicePage from "@/views/InvoicePage.vue";
+import { createRouter, createWebHistory } from "vue-router";
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),

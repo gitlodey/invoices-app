@@ -11,7 +11,7 @@
 <script lang="ts" setup>
 import AppLogo from "@/components/AppLogo.vue";
 import ProfileAvatar from "@/components/ProfileAvatar.vue";
-import ThemeSwitcher from "@/components/ThemeSwitcher.vue";
+import ThemeSwitcher from "@/components/TheThemeSwitcher.vue";
 </script>
 <style>
 .sidebar {

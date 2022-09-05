@@ -1,7 +1,7 @@
-import { defineStore } from "pinia";
+import type InvoiceStatuses from "@/enums/InvoiceStatuses";
 import api from "@/services/api";
 import type Invoice from "@/types/Invoice";
-import type InvoiceStatuses from "@/enums/InvoiceStatuses";
+import { defineStore } from "pinia";
 
 interface IInvoicesState {
   invoices: Invoice[];

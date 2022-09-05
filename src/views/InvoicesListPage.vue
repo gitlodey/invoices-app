@@ -34,17 +34,17 @@
 </template>
 
 <script lang="ts" setup>
-import EmptyPage from "@/views/EmptyPage.vue";
-import InvoiceListItem from "@/components/InvoiceListItem.vue";
-import PageSlide from "@/components/PageSlide.vue";
-import { useRoute, useRouter } from "vue-router";
 import data from "@/assets/data/data.json";
-import type Invoice from "@/types/Invoice";
-import { onMounted, ref } from "vue";
-import { useInvoices } from "@/stores/Invoices";
+import InvoiceListItem from "@/components/InvoiceListItem.vue";
 import InvoiceListHeader from "@/components/InvoiceListHeader.vue";
-import type InvoiceStatuses from "@/enums/InvoiceStatuses";
+import PageSlide from "@/views/PageSlide.vue";
 import InvoiceStatusesEnum from "@/enums/InvoiceStatuses";
+import type InvoiceStatuses from "@/enums/InvoiceStatuses";
+import { useInvoices } from "@/stores/Invoices";
+import type Invoice from "@/types/Invoice";
+import EmptyPage from "@/views/PageEmpty.vue";
+import { onMounted, ref } from "vue";
+import { useRoute, useRouter } from "vue-router";
 
 const router = useRouter();
 const route = useRoute();
@@ -74,7 +74,6 @@ const onInvoiceFormClose = () => {
     path: "/",
   });
 };
-
 const onFilter = async (filter?: InvoiceStatuses) => {
   await invoicesStore.getInvoices(filter);
   await router.push({ query: { status: filter } });

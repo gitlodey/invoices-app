@@ -10,8 +10,8 @@
 </template>
 
 <script lang="ts" setup>
-import { ref, computed, onMounted } from "vue";
 import AppIcon from "@/components/AppIcon.vue";
+import { ref, computed, onMounted } from "vue";
 
 const userTheme = ref(localStorage.getItem("user-theme"));
 
@@ -30,17 +30,14 @@ const toggleTheme = () => {
     setTheme("light-theme");
   }
 };
-
 const getTheme = () => {
   return localStorage.getItem("user-theme");
 };
-
 const setTheme = (theme: string) => {
   localStorage.setItem("user-theme", theme);
   userTheme.value = theme;
   document.documentElement.className = theme;
 };
-
 const getMediaPreference = () => {
   const hasDarkPreference = window.matchMedia(
     "(prefers-color-scheme: dark)",
@@ -51,7 +48,6 @@ const getMediaPreference = () => {
     return "light-theme";
   }
 };
-
 onMounted(() => {
   const initUserTheme = getTheme() || getMediaPreference();
   setTheme(initUserTheme);

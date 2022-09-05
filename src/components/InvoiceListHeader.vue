@@ -32,9 +32,10 @@
 <script lang="ts" setup>
 import AppButton from "@/components/AppButton.vue";
 import InvoicesFilter from "@/components/InvoicesFilter.vue";
-import { useRouter } from "vue-router";
 import type InvoiceStatuses from "@/enums/InvoiceStatuses";
 import Routes from "@/enums/Routes";
+import { useRouter } from "vue-router";
+
 const router = useRouter();
 
 const props = defineProps<{

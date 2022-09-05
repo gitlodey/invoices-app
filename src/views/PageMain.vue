@@ -10,10 +10,10 @@
 </template>
 
 <script lang="ts" setup>
-import { RouterView } from "vue-router";
-import PageSidebar from "@/components/PageSidebar.vue";
 import AppOverlay from "@/components/AppOverlay.vue";
-import NotificationContainer from "@/components/NotificationContainer.vue";
+import NotificationContainer from "@/components/TheNotificationsContainer.vue";
+import PageSidebar from "@/components/TheSidebar.vue";
+import { RouterView } from "vue-router";
 </script>
 
 <style scoped>

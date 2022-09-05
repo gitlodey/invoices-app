@@ -20,9 +20,9 @@
 </template>
 
 <script lang="ts" setup>
+import { useCapitalize } from "@/composables/useCapitalize";
 import InvoiceStatuses from "@/enums/InvoiceStatuses";
 import type IInvoiceStatuses from "@/enums/InvoiceStatuses";
-import { useCapitalize } from "@/composables/useCapitalize";
 import { defineEmits } from "vue";
 
 const props = defineProps<{
@@ -30,6 +30,7 @@ const props = defineProps<{
 }>();
 
 const emits = defineEmits(["change"]);
+
 const statuses = [
   {
     value: InvoiceStatuses.draft,

@@ -32,8 +32,8 @@
 </template>
 
 <script lang="ts" setup>
-import { ref, watch } from "vue";
 import { Field, ErrorMessage } from "vee-validate/dist/vee-validate";
+import { ref, watch } from "vue";
 
 const props = defineProps({
   modelValue: {
@@ -77,15 +77,15 @@ const emits = defineEmits(["update:modelValue"]);
 
 const value = ref(props.modelValue);
 
-const onChange = (event: Event) => {
-  const target = event.target as HTMLInputElement;
-  emits("update:modelValue", target.value);
-};
-
 watch(
   () => props.modelValue,
   (newValue) => (value.value = newValue),
 );
+
+const onChange = (event: Event) => {
+  const target = event.target as HTMLInputElement;
+  emits("update:modelValue", target.value);
+};
 </script>
 
 <style>

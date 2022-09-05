@@ -11,9 +11,9 @@
 </template>
 
 <script lang="ts" setup>
-import type { INotification } from "@/stores/ui";
+import NotificationItem from "@/components/TheNotificationItem.vue";
 import { useUi } from "@/stores/ui";
-import NotificationItem from "@/components/NotificationItem.vue";
+import type { INotification } from "@/stores/ui";
 
 const uiStore = useUi();
 

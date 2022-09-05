@@ -21,9 +21,9 @@
 </template>
 
 <script lang="ts" setup>
+import AppIcon from "@/components/AppIcon.vue";
 import type { INotification } from "@/stores/ui";
 import { computed } from "vue";
-import AppIcon from "@/components/AppIcon.vue";
 
 const props = defineProps<{
   notification: INotification;

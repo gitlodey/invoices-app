@@ -9,9 +9,9 @@
 </template>
 
 <script lang="ts" setup>
+import { useCapitalize } from "@/composables/useCapitalize";
 import type InvoiceStatuses from "@/enums/InvoiceStatuses";
 import { computed } from "vue";
-import { useCapitalize } from "@/composables/useCapitalize";
 
 const props = defineProps<{
   status: InvoiceStatuses;
