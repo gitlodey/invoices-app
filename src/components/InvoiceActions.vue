@@ -66,7 +66,7 @@ const deleteInvoice = async () => {
   });
   uiStore.addSuccessNotification({
     title: `Invoice #${props.invoice.id}`,
-    description: "was successfully deleted",
+    description: "Was successfully deleted",
   });
 };
 
@@ -74,6 +74,10 @@ const markAsPaid = async () => {
   const invoice = { ...props.invoice };
   invoice.status = InvoiceStatuses.paid;
   await invoicesStore.editInvoice(invoice);
+  uiStore.addSuccessNotification({
+    title: `Invoice #${props.invoice.id}`,
+    description: "Was marked as paid",
+  });
 };
 </script>
 
