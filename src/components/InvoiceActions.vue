@@ -18,6 +18,7 @@
       <AppButton
         text="Mark as paid"
         @click="markAsPaid"
+        :disabled="invoice.status !== InvoiceStatuses.pending"
       />
     </div>
   </div>
