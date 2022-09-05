@@ -53,7 +53,7 @@ const props = defineProps<{
 .page-slide--content {
   box-sizing: border-box;
   background-color: var(--color-bg);
-  position: absolute;
+  position: fixed;
   top: 0;
   bottom: 0;
   left: var(--app-sidebar-width);
