@@ -15,7 +15,9 @@
         <div>{{ item.name }}</div>
         <div class="invoice-items-table--quantity">{{ item.quantity }}</div>
         <div class="invoice-items-table--price">{{ item.price }}</div>
-        <div class="invoice-items-table--total">{{ item.total }}</div>
+        <div class="invoice-items-table--total">
+          {{ useFormatNumber(item.total) }}
+        </div>
       </div>
     </div>
     <div class="invoice-items-table--footer">
@@ -27,6 +29,7 @@
 
 <script lang="ts" setup>
 import type { IInvoiceItem } from "@/types/Invoice";
+import { useFormatNumber } from "@/composables/useFormatNumber";
 
 const props = defineProps<{
   items: IInvoiceItem[];

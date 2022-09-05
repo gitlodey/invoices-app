@@ -12,6 +12,7 @@
       type="number"
       rules="required"
       :small-padding="true"
+      :min="1"
     />
     <FormInput
       :name="`${item.id}--itemPrice`"
@@ -19,9 +20,10 @@
       @update:modelValue="onPriceUpdated"
       type="number"
       rules="required"
+      :min="0.01"
     />
     <div class="invoice-item--total">
-      {{ item.total }}
+      {{ total }}
       <AppIcon
         class="invoice-item--delete"
         icon="delete"
@@ -35,10 +37,14 @@
 import FormInput from "@/components/FormInput.vue";
 import type { IInvoiceItem } from "@/types/Invoice";
 import AppIcon from "@/components/AppIcon.vue";
+import { useFormatNumber } from "@/composables/useFormatNumber";
+import { computed } from "vue";
 
 const props = defineProps<{
   item: IInvoiceItem;
 }>();
+
+const total = computed(() => useFormatNumber(props.item.total));
 
 const onQuantityUpdated = (quantity: number) => {
   props.item.quantity = quantity;

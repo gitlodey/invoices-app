@@ -9,7 +9,7 @@
     </div>
     <div class="invoice-list-item--due">Due {{ invoice.paymentDue }}</div>
     <div class="invoice-list-item--name">{{ invoice.clientName }}</div>
-    <div class="invoice-list-item--total">£{{ invoice.total }}</div>
+    <div class="invoice-list-item--total">£{{ total }}</div>
     <div class="invoice-list-item--status">
       <InvoiceStatus :status="invoice.status" />
       <AppIcon
@@ -27,12 +27,16 @@ import InvoiceStatus from "@/components/InvoiceStatus.vue";
 import AppIcon from "@/components/AppIcon.vue";
 import { useRouter } from "vue-router";
 import Routes from "@/enums/Routes";
+import { computed } from "vue";
+import { useFormatNumber } from "@/composables/useFormatNumber";
 
 const props = defineProps<{
   invoice: Invoice;
 }>();
 
 const router = useRouter();
+
+const total = computed(() => useFormatNumber(props.invoice.total));
 
 const goToInvoicePage = () => {
   router.push({

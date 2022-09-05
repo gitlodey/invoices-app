@@ -44,7 +44,7 @@
 
     <InvoiceItemsTable
       :items="invoice.items"
-      :total="invoice.total"
+      :total="total"
     />
   </div>
 </template>
@@ -52,10 +52,14 @@
 <script lang="ts" setup>
 import type Invoice from "@/types/Invoice";
 import InvoiceItemsTable from "@/components/InvoiceItemsTable.vue";
+import { computed } from "vue";
+import { useFormatNumber } from "@/composables/useFormatNumber";
 
 const props = defineProps<{
   invoice: Invoice;
 }>();
+
+const total = computed(() => useFormatNumber(props.invoice.total));
 </script>
 
 <style scoped>
