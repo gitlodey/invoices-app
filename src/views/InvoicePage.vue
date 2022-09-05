@@ -26,6 +26,7 @@ import { onMounted } from "vue";
 import { useInvoices } from "@/stores/Invoices";
 import PageSlide from "@/components/PageSlide.vue";
 import GoBack from "@/components/GoBack.vue";
+import Routes from "@/enums/Routes";
 
 const router = useRouter();
 const route = useRoute();
@@ -39,7 +40,10 @@ onMounted(async () => {
 
 const onInvoiceFormClose = () => {
   router.push({
-    path: `/invoice/${invoicesStore.currentInvoice?.id}`,
+    name: Routes.invoice,
+    params: {
+      invoiceId: route.params.invoiceId,
+    },
   });
 };
 </script>

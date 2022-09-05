@@ -24,7 +24,7 @@ const onClick = (notification: INotification) => {
 
 <style scoped>
 .notifications-container {
-  position: absolute;
+  position: fixed;
   bottom: 0;
   left: calc(50% - 100px + (var(--app-sidebar-width) / 2));
   width: 200px;

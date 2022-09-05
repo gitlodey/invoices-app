@@ -1,7 +1,7 @@
 <template>
   <Form
     class="invoice-form"
-    @submit="$emit('submit', form)"
+    @submit="submitHandler"
   >
     <div class="invoice-form--section-header">Bill from</div>
     <div class="invoice-form--row-1-item">
@@ -134,16 +134,22 @@ import InvoiceItems from "@/components/InvoiceItems.vue";
 import AppButton from "@/components/AppButton.vue";
 import { useInvoiceId } from "@/composables/useInvoiceId";
 import { useInvoices } from "@/stores/Invoices";
+import { useUi } from "@/stores/ui";
 import {
   useCurrentDate,
   useAddDays,
   useDifference,
 } from "@/composables/useDayJs";
+import { useRouter } from "vue-router";
+import Routes from "@/enums/Routes";
 
 const invoiceStore = useInvoices();
+const uiStore = useUi();
+const router = useRouter();
 
 const props = defineProps<{
   invoice?: Invoice;
+  onSubmit?: Function;
 }>();
 let form = reactive<Invoice>({
   id: useInvoiceId(),
@@ -224,8 +230,31 @@ const onDelete = (index: number) => {
   }
 };
 
+const updateInvoiceTotal = () => {
+  const total = form.items.reduce((total, item) => {
+    total += item.total;
+    return total;
+  }, 0);
+  form.total = total;
+};
+
 const saveAsDraft = async () => {
+  updateInvoiceTotal();
   await invoiceStore.addInvoice(form);
+  await router.push({
+    name: Routes.invoicesList,
+  });
+  uiStore.addSuccessNotification({
+    title: `Notification ${form.id}`,
+    description: "Successfully sawed as draft",
+  });
+};
+
+const submitHandler = () => {
+  updateInvoiceTotal();
+  if (props.onSubmit) {
+    props.onSubmit(form);
+  }
 };
 defineExpose({
   saveAsDraft,

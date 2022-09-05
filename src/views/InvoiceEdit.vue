@@ -2,13 +2,14 @@
   <div class="invoice-edit">
     <h2>Edit invoice</h2>
     <InvoiceForm
-      v-if="invoicesState.currentInvoice"
-      :invoice="invoicesState.currentInvoice"
+      v-if="invoicesStore.currentInvoice"
+      :invoice="invoicesStore.currentInvoice"
+      :on-submit="editInvoice"
     >
       <div class="form-buttons">
         <AppButton
           text="Cancel"
-          @click="$router.go(-1)"
+          @click="goBack"
           color="dark"
         />
         <AppButton
@@ -23,23 +24,51 @@
 <script lang="ts" setup>
 import InvoiceForm from "@/components/InvoiceForm.vue";
 import { useInvoices } from "@/stores/Invoices";
-import { useRoute } from "vue-router";
+import { useRoute, useRouter } from "vue-router";
 import { onMounted } from "vue";
 import AppButton from "@/components/AppButton.vue";
+import type Invoice from "@/types/Invoice";
+import Routes from "@/enums/Routes";
+import { useUi } from "@/stores/ui";
+import InvoiceStatuses from "@/enums/InvoiceStatuses";
 
 const route = useRoute();
+const router = useRouter();
 
-const invoicesState = useInvoices();
+const invoicesStore = useInvoices();
+const uiStore = useUi();
 
 onMounted(() => {
   if (
-    !invoicesState.currentInvoice ||
-    invoicesState.currentInvoice.id !== route.params.invoiceId
+    !invoicesStore.currentInvoice ||
+    invoicesStore.currentInvoice.id !== route.params.invoiceId
   ) {
     const id = route.params.invoiceId as string;
-    invoicesState.getInvoice(id);
+    invoicesStore.getInvoice(id);
   }
 });
+
+const editInvoice = async (form: Invoice) => {
+  try {
+    form.status = InvoiceStatuses.pending;
+    await invoicesStore.editInvoice(form);
+    uiStore.addSuccessNotification({
+      title: `Invoice #${form.id}`,
+      description: "Successfully edited",
+    });
+  } finally {
+    goBack();
+  }
+};
+
+const goBack = () => {
+  router.push({
+    name: Routes.invoice,
+    params: {
+      invoiceId: route.params.invoiceId,
+    },
+  });
+};
 </script>
 
 <style scoped>

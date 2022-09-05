@@ -3,12 +3,12 @@
     <div class="text-32-700">New invoice</div>
     <InvoiceForm
       ref="form"
-      @submit="addInvoice"
+      :on-submit="addInvoice"
     >
       <div class="form-buttons">
         <AppButton
           text="Discard"
-          @click="$router.push('/')"
+          @click="goBack"
           color="secondary"
         />
         <div class="form-buttons-right">
@@ -31,13 +31,39 @@
 import InvoiceForm from "@/components/InvoiceForm.vue";
 import AppButton from "@/components/AppButton.vue";
 import { ref } from "vue";
+import { useInvoices } from "@/stores/Invoices";
+import { useUi } from "@/stores/ui";
+import type Invoice from "@/types/Invoice";
+import { useRouter } from "vue-router";
+import Routes from "@/enums/Routes";
+import InvoiceStatuses from "@/enums/InvoiceStatuses";
+
+const router = useRouter();
+const invoicesStore = useInvoices();
+const uiStore = useUi();
 
 const form = ref<InstanceType<typeof InvoiceForm> | null>(InvoiceForm);
 
 const saveDraft = () => {
   form.value?.saveAsDraft();
 };
-const addInvoice = (form) => {};
+const addInvoice = async (form: Invoice) => {
+  try {
+    form.status = InvoiceStatuses.pending;
+    await invoicesStore.addInvoice(form);
+    uiStore.addSuccessNotification({
+      title: `Invoice #${form.id}`,
+      description: "Saved and send to the client",
+    });
+  } finally {
+    goBack();
+  }
+};
+const goBack = () => {
+  router.push({
+    name: Routes.invoicesList,
+  });
+};
 </script>
 
 <style scoped>

@@ -25,7 +25,7 @@ export default class LocalStorageApi implements IApi {
   }
   async addInvoice(invoice: Invoice) {
     const invoices = this.getAllInvoicesFromDb();
-    invoices.push(invoice);
+    invoices.unshift(invoice);
     this.setInvoicesToDb(invoices);
   }
   async editInvoice(invoice: Invoice) {

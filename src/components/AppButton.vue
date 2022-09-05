@@ -2,7 +2,7 @@
   <button
     class="app-button"
     :class="classList"
-    :type="type"
+    :type="buttonType"
     @click="onClick"
   >
     <AppIcon
@@ -44,6 +44,8 @@ const classList = computed(() => {
     __disabled: props.disabled,
   };
 });
+
+const buttonType = computed(() => props.type || "button");
 
 const onClick = (event: Event) => {
   if (!props.disabled) {

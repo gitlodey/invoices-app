@@ -32,7 +32,7 @@ export const useInvoices = defineStore("Invoices", {
     async addInvoice(invoice: Invoice) {
       try {
         await api.addInvoice(invoice);
-        this.invoices.push(invoice);
+        this.invoices.unshift(invoice);
       } catch (error) {
         console.error(error);
       }
@@ -41,6 +41,7 @@ export const useInvoices = defineStore("Invoices", {
       await api.editInvoice(invoice);
       const index = this.invoices.map((item) => item.id).indexOf(invoice.id);
       this.invoices[index] = invoice;
+      this.currentInvoice = invoice;
     },
     async deleteInvoice(invoice: Invoice) {
       await api.deleteInvoice(invoice);
