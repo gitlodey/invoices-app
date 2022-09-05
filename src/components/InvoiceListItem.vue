@@ -6,7 +6,7 @@
     >
       <span class="invoice-list-item--id-prefix">#</span>{{ invoice.id }}
     </div>
-    <div class="invoice-list-item--due">Due {{ invoice.paymentDue }}</div>
+    <div class="invoice-list-item--due">Due {{ paymentDue }}</div>
     <div class="invoice-list-item--name">{{ invoice.clientName }}</div>
     <div class="invoice-list-item--total">£{{ total }}</div>
     <div class="invoice-list-item--status">
@@ -28,6 +28,7 @@ import { useRouter } from "vue-router";
 import Routes from "@/enums/Routes";
 import { computed } from "vue";
 import { useFormatNumber } from "@/composables/useFormatNumber";
+import { useFormatDate } from "@/composables/useDayJs";
 
 const props = defineProps<{
   invoice: Invoice;
@@ -36,6 +37,7 @@ const props = defineProps<{
 const router = useRouter();
 
 const total = computed(() => useFormatNumber(props.invoice.total));
+const paymentDue = computed(() => useFormatDate(props.invoice.paymentDue));
 
 const goToInvoicePage = () => {
   router.push({

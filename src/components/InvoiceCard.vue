@@ -20,12 +20,12 @@
       <div class="invoice-card--dates invoice-card--cell">
         <div>
           <div class="invoice-card--block-title">Invoice Date</div>
-          <div class="text-18-700">{{ invoice.createdAt }}</div>
+          <div class="text-18-700">{{ createdAt }}</div>
         </div>
 
         <div>
           <div class="invoice-card--block-title">Payment due</div>
-          <div class="text-18-700">{{ invoice.paymentDue }}</div>
+          <div class="text-18-700">{{ paymentDue }}</div>
         </div>
       </div>
       <div class="invoice-card--cell">
@@ -54,12 +54,15 @@ import type Invoice from "@/types/Invoice";
 import InvoiceItemsTable from "@/components/InvoiceItemsTable.vue";
 import { computed } from "vue";
 import { useFormatNumber } from "@/composables/useFormatNumber";
+import { useFormatDate } from "@/composables/useDayJs";
 
 const props = defineProps<{
   invoice: Invoice;
 }>();
 
 const total = computed(() => useFormatNumber(props.invoice.total));
+const createdAt = computed(() => useFormatDate(props.invoice.createdAt));
+const paymentDue = computed(() => useFormatDate(props.invoice.paymentDue));
 </script>
 
 <style scoped>
