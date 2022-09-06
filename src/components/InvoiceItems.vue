@@ -22,7 +22,7 @@
 
 <script lang="ts" setup>
 import InvoiceItem from "@/components/InvoiceItem.vue";
-import type { IInvoiceItem } from "@/types/Invoice";
+import type { IInvoiceItem } from "@/types/IInvoice";
 
 defineProps<{
   items: IInvoiceItem[];

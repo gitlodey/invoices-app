@@ -60,11 +60,11 @@
 import InvoiceItemsTable from "@/components/InvoiceItemsTable.vue";
 import { useFormatDate } from "@/composables/useDayJs";
 import { useFormatNumber } from "@/composables/useFormatNumber";
-import type Invoice from "@/types/Invoice";
+import type IInvoice from "@/types/IInvoice";
 import { computed } from "vue";
 
 const props = defineProps<{
-  invoice: Invoice;
+  invoice: IInvoice;
 }>();
 
 const total = computed(() => useFormatNumber(props.invoice.total));

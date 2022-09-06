@@ -1,12 +1,12 @@
-import type Invoice from "@/types/Invoice";
+import type IInvoice from "@/types/IInvoice";
 import type InvoiceStatuses from "@/enums/InvoiceStatuses";
 
 interface IApi {
-  getInvoice(id: string): Promise<Invoice | undefined>;
-  getInvoices(filter?: InvoiceStatuses): Promise<Invoice[] | undefined>;
-  addInvoice(invoice: Invoice): Promise<void>;
-  editInvoice(invoice: Invoice): Promise<void>;
-  deleteInvoice(invoice: Invoice): Promise<void>;
+  getInvoice(id: string): Promise<IInvoice | undefined>;
+  getInvoices(filter?: InvoiceStatuses): Promise<IInvoice[] | undefined>;
+  addInvoice(invoice: IInvoice): Promise<void>;
+  editInvoice(invoice: IInvoice): Promise<void>;
+  deleteInvoice(invoice: IInvoice): Promise<void>;
 }
 
 export default IApi;

@@ -1,15 +1,15 @@
 import type IApi from "@/types/IApi";
 import type InvoiceStatuses from "@/enums/InvoiceStatuses";
-import type Invoice from "@/types/Invoice";
+import type IInvoice from "@/types/IInvoice";
 
 const LOCAL_STORAGE_KEY = "invoices-db";
 
 export default class LocalStorageApi implements IApi {
-  private getAllInvoicesFromDb(): Invoice[] {
+  private getAllInvoicesFromDb(): IInvoice[] {
     const invoicesStr = localStorage.getItem(LOCAL_STORAGE_KEY) || "[]";
-    return JSON.parse(invoicesStr) as Invoice[];
+    return JSON.parse(invoicesStr) as IInvoice[];
   }
-  private setInvoicesToDb(invoices: Invoice[]) {
+  private setInvoicesToDb(invoices: IInvoice[]) {
     localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(invoices));
   }
   async getInvoice(id: string) {
@@ -23,12 +23,12 @@ export default class LocalStorageApi implements IApi {
     }
     return invoices;
   }
-  async addInvoice(invoice: Invoice) {
+  async addInvoice(invoice: IInvoice) {
     const invoices = this.getAllInvoicesFromDb();
     invoices.unshift(invoice);
     this.setInvoicesToDb(invoices);
   }
-  async editInvoice(invoice: Invoice) {
+  async editInvoice(invoice: IInvoice) {
     const invoices = this.getAllInvoicesFromDb().map((item) => {
       if (item.id === invoice.id) {
         return invoice;
@@ -37,7 +37,7 @@ export default class LocalStorageApi implements IApi {
     });
     this.setInvoicesToDb(invoices);
   }
-  async deleteInvoice(invoice: Invoice) {
+  async deleteInvoice(invoice: IInvoice) {
     const invoices = this.getAllInvoicesFromDb().filter(
       (item) => item.id !== invoice.id,
     );

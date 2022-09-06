@@ -44,7 +44,7 @@
 import AppIcon from "@/components/AppIcon.vue";
 import FormInput from "@/components/AppInput.vue";
 import { useFormatNumber } from "@/composables/useFormatNumber";
-import type { IInvoiceItem } from "@/types/Invoice";
+import type { IInvoiceItem } from "@/types/IInvoice";
 import { computed } from "vue";
 
 const props = defineProps<{

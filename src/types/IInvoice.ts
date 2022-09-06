@@ -1,6 +1,6 @@
 import type InvoiceStatuses from "@/enums/InvoiceStatuses";
 
-interface InvoiceAddress {
+interface IInvoiceAddress {
   street: string;
   city: string;
   postCode: string;
@@ -13,7 +13,7 @@ export interface IInvoiceItem {
   total: number;
   id?: number;
 }
-interface Invoice {
+interface IInvoice {
   id: string;
   createdAt: string;
   paymentDue: string;
@@ -22,10 +22,10 @@ interface Invoice {
   clientName: string;
   clientEmail: string;
   status: InvoiceStatuses;
-  senderAddress: InvoiceAddress;
-  clientAddress: InvoiceAddress;
+  senderAddress: IInvoiceAddress;
+  clientAddress: IInvoiceAddress;
   items: IInvoiceItem[];
   total: number;
 }
 
-export default Invoice;
+export default IInvoice;

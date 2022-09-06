@@ -29,7 +29,7 @@
 
 <script lang="ts" setup>
 import { useFormatNumber } from "@/composables/useFormatNumber";
-import type { IInvoiceItem } from "@/types/Invoice";
+import type { IInvoiceItem } from "@/types/IInvoice";
 
 defineProps<{
   items: IInvoiceItem[];

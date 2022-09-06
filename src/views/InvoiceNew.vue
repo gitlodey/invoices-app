@@ -29,26 +29,26 @@
 
 <script lang="ts" setup>
 import AppButton from "@/components/AppButton.vue";
-import type InvoiceForm from "@/components/InvoiceForm.vue";
+import InvoiceForm from "@/components/InvoiceForm.vue";
 import ButtonColors from "@/enums/ButtonColors";
 import InvoiceStatuses from "@/enums/InvoiceStatuses";
 import Routes from "@/enums/Routes";
 import { useInvoices } from "@/stores/Invoices";
 import { useUi } from "@/stores/ui";
-import type Invoice from "@/types/Invoice";
-import { ref } from "vue";
+import type IInvoice from "@/types/IInvoice";
+import { defineComponent, ref } from "vue";
 import { useRouter } from "vue-router";
 
 const router = useRouter();
 const invoicesStore = useInvoices();
 const uiStore = useUi();
 
-const form = ref<InstanceType<typeof InvoiceForm> | null>();
+const form = ref<ReturnType<typeof defineComponent> | null>();
 
 const saveDraft = () => {
   form.value?.saveAsDraft();
 };
-const addInvoice = async (form: Invoice) => {
+const addInvoice = async (form: IInvoice) => {
   try {
     form.status = InvoiceStatuses.pending;
     await invoicesStore.addInvoice(form);

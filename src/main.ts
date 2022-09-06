@@ -1,5 +1,6 @@
 import { createApp } from "vue";
 import { createPinia } from "pinia";
+// eslint-disable-next-line
 import styles from "@/styles/style.css";
 
 import App from "./App.vue";

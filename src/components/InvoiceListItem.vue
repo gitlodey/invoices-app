@@ -26,14 +26,14 @@ import InvoiceStatus from "@/components/InvoiceStatus.vue";
 import { useFormatDate } from "@/composables/useDayJs";
 import { useFormatNumber } from "@/composables/useFormatNumber";
 import Routes from "@/enums/Routes";
-import type Invoice from "@/types/Invoice";
+import type IInvoice from "@/types/IInvoice";
 import { computed } from "vue";
 import { useRouter } from "vue-router";
 
 const router = useRouter();
 
 const props = defineProps<{
-  invoice: Invoice;
+  invoice: IInvoice;
 }>();
 
 const total = computed(() => useFormatNumber(props.invoice.total));

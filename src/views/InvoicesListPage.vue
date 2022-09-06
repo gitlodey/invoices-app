@@ -42,7 +42,7 @@ import PageSlide from "@/views/PageSlide.vue";
 import InvoiceStatusesEnum from "@/enums/InvoiceStatuses";
 import type InvoiceStatuses from "@/enums/InvoiceStatuses";
 import { useInvoices } from "@/stores/Invoices";
-import type Invoice from "@/types/Invoice";
+import type IInvoice from "@/types/IInvoice";
 import EmptyPage from "@/views/PageEmpty.vue";
 import { onMounted, ref } from "vue";
 import { useRoute, useRouter } from "vue-router";
@@ -66,7 +66,7 @@ onMounted(async () => {
   const mockDataAdded = localStorage.getItem("mockDataAdded");
   if (mockDataAdded !== "true") {
     data.forEach((invoice) => {
-      const i = invoice as Invoice;
+      const i = invoice as IInvoice;
       invoicesStore.addInvoice(i);
     });
     localStorage.setItem("mockDataAdded", "true");

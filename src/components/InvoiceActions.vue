@@ -32,7 +32,7 @@ import InvoiceStatuses from "@/enums/InvoiceStatuses";
 import Routes from "@/enums/Routes";
 import { useInvoices } from "@/stores/Invoices";
 import { useUi } from "@/stores/ui";
-import type Invoice from "@/types/Invoice";
+import type IInvoice from "@/types/IInvoice";
 import { useRouter } from "vue-router";
 
 const router = useRouter();
@@ -40,7 +40,7 @@ const uiStore = useUi();
 const invoicesStore = useInvoices();
 
 const props = defineProps<{
-  invoice: Invoice;
+  invoice: IInvoice;
 }>();
 
 const editInvoice = () => {

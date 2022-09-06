@@ -139,8 +139,8 @@ import ButtonColors from "@/enums/ButtonColors";
 import InvoiceStatuses from "@/enums/InvoiceStatuses";
 import { useInvoices } from "@/stores/Invoices";
 import { useUi } from "@/stores/ui";
-import type { IInvoiceItem } from "@/types/Invoice";
-import type Invoice from "@/types/Invoice";
+import type { IInvoiceItem } from "@/types/IInvoice";
+import type IInvoice from "@/types/IInvoice";
 import { configure, defineRule, Form } from "vee-validate";
 import { email, min_value, required } from "@vee-validate/rules";
 import { computed, reactive } from "vue";
@@ -153,11 +153,11 @@ const uiStore = useUi();
 const router = useRouter();
 
 const props = defineProps<{
-  invoice?: Invoice;
-  onSubmit?: (form: Invoice) => Promise<void>;
+  invoice?: IInvoice;
+  onSubmit?: (form: IInvoice) => Promise<void>;
 }>();
 
-const form = reactive<Invoice>({
+const form = reactive<IInvoice>({
   id: useInvoiceId(),
   createdAt: useCurrentDate(),
   paymentDue: useAddDays(useCurrentDate(), 1),
@@ -264,7 +264,7 @@ const saveAsDraft = async () => {
     name: Routes.invoicesList,
   });
   uiStore.addSuccessNotification({
-    title: `Notification ${form.id}`,
+    title: `Invoice ${form.id}`,
     description: "Successfully sawed as draft",
   });
 };

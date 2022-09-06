@@ -31,7 +31,7 @@ import InvoiceStatuses from "@/enums/InvoiceStatuses";
 import Routes from "@/enums/Routes";
 import { useInvoices } from "@/stores/Invoices";
 import { useUi } from "@/stores/ui";
-import type Invoice from "@/types/Invoice";
+import type IInvoice from "@/types/IInvoice";
 import { onMounted } from "vue";
 import { useRoute, useRouter } from "vue-router";
 
@@ -50,13 +50,13 @@ onMounted(() => {
   }
 });
 
-const editInvoice = async (form: Invoice) => {
+const editInvoice = async (form: IInvoice) => {
   try {
     form.status = InvoiceStatuses.pending;
     await invoicesStore.editInvoice(form);
     uiStore.addSuccessNotification({
       title: `Invoice #${form.id}`,
-      description: "Successfully edited",
+      description: "Was successfully edited",
     });
   } finally {
     goBack();

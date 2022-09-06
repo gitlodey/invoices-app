@@ -1,11 +1,11 @@
 import type InvoiceStatuses from "@/enums/InvoiceStatuses";
 import api from "@/services/api";
-import type Invoice from "@/types/Invoice";
+import type IInvoice from "@/types/IInvoice";
 import { defineStore } from "pinia";
 
 interface IInvoicesState {
-  invoices: Invoice[];
-  currentInvoice: Invoice | undefined;
+  invoices: IInvoice[];
+  currentInvoice: IInvoice | undefined;
 }
 
 export const useInvoices = defineStore("Invoices", {
@@ -17,19 +17,27 @@ export const useInvoices = defineStore("Invoices", {
   },
   actions: {
     async getInvoice(id: string) {
-      const invoice = await api.getInvoice(id);
-      if (invoice) {
-        this.currentInvoice = invoice;
+      try {
+        const invoice = await api.getInvoice(id);
+        if (invoice) {
+          this.currentInvoice = invoice;
+        }
+      } catch (error) {
+        console.error(error);
       }
     },
     async getInvoices(filter?: InvoiceStatuses) {
-      const invoices = await api.getInvoices(filter);
-      this.$reset();
-      if (invoices) {
-        this.invoices.push(...invoices);
+      try {
+        const invoices = await api.getInvoices(filter);
+        this.$reset();
+        if (invoices) {
+          this.invoices.push(...invoices);
+        }
+      } catch (error) {
+        console.error(error);
       }
     },
-    async addInvoice(invoice: Invoice) {
+    async addInvoice(invoice: IInvoice) {
       try {
         await api.addInvoice(invoice);
         this.invoices.unshift(invoice);
@@ -37,16 +45,24 @@ export const useInvoices = defineStore("Invoices", {
         console.error(error);
       }
     },
-    async editInvoice(invoice: Invoice) {
-      await api.editInvoice(invoice);
-      const index = this.invoices.map((item) => item.id).indexOf(invoice.id);
-      this.invoices[index] = invoice;
-      this.currentInvoice = invoice;
+    async editInvoice(invoice: IInvoice) {
+      try {
+        await api.editInvoice(invoice);
+        const index = this.invoices.map((item) => item.id).indexOf(invoice.id);
+        this.invoices[index] = invoice;
+        this.currentInvoice = invoice;
+      } catch (error) {
+        console.error(error);
+      }
     },
-    async deleteInvoice(invoice: Invoice) {
-      await api.deleteInvoice(invoice);
-      const index = this.invoices.map((item) => item.id).indexOf(invoice.id);
-      this.invoices.splice(index, 1);
+    async deleteInvoice(invoice: IInvoice) {
+      try {
+        await api.deleteInvoice(invoice);
+        const index = this.invoices.map((item) => item.id).indexOf(invoice.id);
+        this.invoices.splice(index, 1);
+      } catch (error) {
+        console.error(error);
+      }
     },
   },
 });
