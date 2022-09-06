@@ -15,7 +15,7 @@ const props = defineProps<{
   profile?: { avatar: string };
 }>();
 
-const avatarSrc = ref(props.profile?.avatar || "/src/assets/image-avatar.jpg");
+const avatarSrc = ref(props.profile?.avatar || "image-avatar.jpg");
 </script>
 
 <style scoped>
