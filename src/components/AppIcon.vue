@@ -15,7 +15,7 @@ const props = defineProps<{
 }>();
 
 const src = computed(() => {
-  return `/src/assets/icons/icon-${props.icon}.svg`;
+  return `icons/icon-${props.icon}.svg`;
 });
 </script>
 
