@@ -1,3 +1,17 @@
+### About my solution
+
+- I implemented all features from Expected Behaviour;
+- And add an extra one: Notifications messages. For giving users related feedback in async actions;
+- I'm storing the data at `LocaleStorage`;
+- The mock data from the `data.json` file will be added in the DB while first load;
+- System requirements: `node>=16`;
+- To install dependencies, run: `npm install`;
+- To start the dev server, run: `npm run dev`;
+- I didn't write the unit tests;
+- The font used in the design system was de-listed from Google fonts. Instead, I imported `League Spartan`, the successor;
+- Thank you for reviewing. I appreciate your feedback!
+
+
 ### Objective
 
 Your challenge is to build out this invoicing application for Condo Group Gmbh's accounting department and get it looking as close to the design as possible.
